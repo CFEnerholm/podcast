@@ -14,11 +14,11 @@
     <property name="BorderWidth">25</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.HBox" id="hbox21">
+      <widget class="Gtk.HBox" id="bigBox">
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <child>
-          <widget class="Gtk.VBox" id="vbox21">
+          <widget class="Gtk.VBox" id="leftSideBox">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
@@ -39,15 +39,15 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.VBox" id="vbox23">
+              <widget class="Gtk.VBox" id="newPodBox">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.HBox" id="hbox28">
+                  <widget class="Gtk.HBox" id="labelBox">
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Label" id="label24">
+                      <widget class="Gtk.Label" id="choseURLLabel">
                         <property name="MemberName" />
                         <property name="WidthRequest">235</property>
                         <property name="Xalign">0</property>
@@ -61,7 +61,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label26">
+                      <widget class="Gtk.Label" id="choseUppdateringsfrekvensLabel">
                         <property name="MemberName" />
                         <property name="WidthRequest">127</property>
                         <property name="Xalign">0</property>
@@ -75,7 +75,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="label28">
+                      <widget class="Gtk.Label" id="choseKategoriLabel">
                         <property name="MemberName" />
                         <property name="WidthRequest">122</property>
                         <property name="Xalign">0</property>
@@ -166,11 +166,11 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.HBox" id="hbox30">
+                      <widget class="Gtk.HBox" id="leftButtonBox">
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
                         <child>
-                          <widget class="Gtk.Button" id="button21">
+                          <widget class="Gtk.Button" id="leftNewButton">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
@@ -185,7 +185,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Button" id="button23">
+                          <widget class="Gtk.Button" id="leftSaveButton">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
@@ -200,7 +200,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="Gtk.Button" id="button25">
+                          <widget class="Gtk.Button" id="leftRemoveButton">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
@@ -243,7 +243,7 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Label" id="label22">
+                  <widget class="Gtk.Label" id="podcastLabel">
                     <property name="MemberName" />
                     <property name="WidthRequest">500</property>
                     <property name="Xalign">0</property>
@@ -298,7 +298,7 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Label" id="label18">
+                  <widget class="Gtk.Label" id="kategoriLabel">
                     <property name="MemberName" />
                     <property name="Xalign">0</property>
                     <property name="LabelProp" translatable="yes">Kategorier:</property>
@@ -366,11 +366,11 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.HBox" id="hbox22">
+                  <widget class="Gtk.HBox" id="rightButtonBox">
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Button" id="button19">
+                      <widget class="Gtk.Button" id="rightNewButton">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Type">TextOnly</property>
@@ -384,7 +384,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="button17">
+                      <widget class="Gtk.Button" id="rightSaveButton">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Type">TextOnly</property>
@@ -398,7 +398,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="button15">
+                      <widget class="Gtk.Button" id="rightRemoveButton">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Type">TextOnly</property>
@@ -420,11 +420,11 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="label16">
+                  <widget class="Gtk.Label" id="avsnittsLabel">
                     <property name="MemberName" />
                     <property name="WidthRequest">300</property>
                     <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Här visas namn på podcast och avsnitt som är markerat till vänster</property>
+                    <property name="LabelProp" translatable="yes">Namn på podcast och avsnitt</property>
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -434,11 +434,11 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+                  <widget class="Gtk.ScrolledWindow" id="episodeInfoScrolledWindow">
                     <property name="MemberName" />
                     <property name="ShadowType">In</property>
                     <child>
-                      <widget class="Gtk.TextView" id="textview3">
+                      <widget class="Gtk.TextView" id="episodeInfoTextview">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="ShowScrollbars">True</property>

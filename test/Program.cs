@@ -1,5 +1,6 @@
 ﻿using System;
 using Gtk;
+using logic;
 
 namespace test
 {
@@ -11,6 +12,7 @@ namespace test
             MainWindow win = new MainWindow();
             win.Show();
             Application.Run();
+            
         }
     }
 }
