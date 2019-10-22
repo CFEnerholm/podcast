@@ -7,10 +7,11 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/test.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="843 427">
+  <widget class="Gtk.Window" id="MainWindow" design-size="860 427">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="BorderWidth">25</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.HBox" id="hbox21">

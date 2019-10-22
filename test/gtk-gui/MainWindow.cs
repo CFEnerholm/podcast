@@ -86,6 +86,7 @@ public partial class MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString("MainWindow");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+		this.BorderWidth = ((uint)(25));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.hbox21 = new global::Gtk.HBox();
 		this.hbox21.Name = "hbox21";
@@ -426,7 +427,7 @@ public partial class MainWindow
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 843;
+		this.DefaultWidth = 860;
 		this.DefaultHeight = 427;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
