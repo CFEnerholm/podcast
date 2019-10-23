@@ -6,13 +6,11 @@ namespace logic
 {
     public class Kategori
     {
-        public List<String> KategoriLista{ get; set; }
+        public string Name { get; set; }
 
-        public Kategori()
+        public Kategori(String name)
         {
-            KategoriLista = new List<String> { "Sport", "Historia", "Nyheter" };
-
+            Name = name;
         }
-
-   
-}}
+    }
+}
