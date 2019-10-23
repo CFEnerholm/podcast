@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Gtk;
 using logic;
 
+
 public partial class MainWindow : Gtk.Window
 {
     public MainWindow() : base(Gtk.WindowType.Toplevel)
@@ -30,5 +31,18 @@ public partial class MainWindow : Gtk.Window
         }
            
     }
-    
+
+    private void FillComboBoxesKategori()
+    {
+        var lista = 
+        var i = 1;
+
+        foreach (var k in )
+       
+            combobox5.InsertText(i, k);
+            i++;
+        }
+
+    }
+
 }

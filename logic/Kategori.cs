@@ -1,15 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using Data;
 
 namespace logic
 {
     public class Kategori
     {
-        string namn;
+        public List<String> KategoriLista{ get; set; }
 
-        public Kategori(string namn)
+        public Kategori()
         {
-            this.namn = namn;
+            KategoriLista = new List<String> { "Sport", "Historia", "Nyheter" };
+
         }
-    }
-}
+
+   
+}}
