@@ -36,17 +36,14 @@ public partial class MainWindow : Gtk.Window
 
     private void FillComboBoxesKategori()
     {
-        
-        List<Kategori> lista = KategoriDatabase.GetList();
-        var i = 1;
+        var kdb = new Kategori();      
+        var i = 0;
 
-        foreach (var k in lista)
+        foreach (var k in kdb.KategoriLista)
         {
-
-            combobox5.InsertText(i, k.ToString());
-            i++;
+            combobox7.InsertText(i, k);
+            i++;      
         }
-
     }
 }
 

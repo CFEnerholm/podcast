@@ -35,7 +35,6 @@
     <Compile Include="Frekvens.cs" />
     <Compile Include="Avsnitt.cs" />
     <Compile Include="Podcast.cs" />
-    <Compile Include="KategoriDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

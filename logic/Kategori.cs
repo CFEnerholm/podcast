@@ -6,11 +6,15 @@ namespace logic
 {
     public class Kategori
     {
-        public string Name { get; set; }
+        public List<String> KategoriLista{ get; set; }
 
-        public Kategori(String name)
+        public Kategori()
         {
-            Name = name;
+            KategoriLista = new List<string>();
+            KategoriLista.Add("historia");
+            KategoriLista.Add("sport");
+            
+
         }
     }
 }
