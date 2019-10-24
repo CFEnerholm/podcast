@@ -11,8 +11,9 @@ namespace logic
         public Kategori()
         {
             KategoriLista = new List<string>();
-            KategoriLista.Add("historia");
-            KategoriLista.Add("sport");
+            KategoriLista.Add("Historia");
+            KategoriLista.Add("Humor");
+            KategoriLista.Add("Sport");
             
 
         }
