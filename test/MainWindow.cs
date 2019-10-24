@@ -6,10 +6,12 @@ using logic;
 
 public partial class MainWindow : Gtk.Window
 {
+
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
         Build();
         FillComboBoxes();
+        FillComboBoxesKategori();
 
 
     }
@@ -29,20 +31,23 @@ public partial class MainWindow : Gtk.Window
             combobox5.InsertText(i, f);
             i++;
         }
-           
+
     }
 
     private void FillComboBoxesKategori()
     {
-        var lista = 
+        
+        List<Kategori> lista = KategoriDatabase.GetList();
         var i = 1;
 
-        foreach (var k in )
-       
-            combobox5.InsertText(i, k);
+        foreach (var k in lista)
+        {
+
+            combobox5.InsertText(i, k.ToString());
             i++;
         }
 
     }
-
 }
+
+

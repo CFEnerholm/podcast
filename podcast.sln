@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logic", "logic\logic.csproj", "{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livekodning", "..\..\Downloads\livekod-2019-10-21\Livekodning\Livekodning.csproj", "{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -39,5 +41,13 @@ Global
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Debug|x86.Build.0 = Debug|Any CPU
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Release|x86.Build.0 = Release|Any CPU
+		{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}.Release|anycpu.Build.0 = Release|Any CPU
+		{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}.Debug|x86.Build.0 = Debug|Any CPU
+		{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}.Release|x86.ActiveCfg = Release|Any CPU
+		{36EA6699-DBE6-4AB2-A057-90FB0E73AF6F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
