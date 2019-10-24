@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Gtk;
 using logic;
 
@@ -13,6 +15,10 @@ namespace test
             win.Show();
             Application.Run();
             
+
+           
+           
+
         }
     }
 }

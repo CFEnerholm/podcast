@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Gtk;
 using logic;
 
@@ -11,7 +12,9 @@ public partial class MainWindow : Gtk.Window
     {
         Build();
         FillComboBoxes();
-        FillComboBoxesKategori();
+        FyllKategorier();
+        
+        
 
 
     }
@@ -34,17 +37,24 @@ public partial class MainWindow : Gtk.Window
 
     }
 
-    private void FillComboBoxesKategori()
+    public void FyllKategorier()
     {
-        var kdb = new Kategori();      
+        var service = new Service();
+        var lista = service.GetKategori();
         var i = 0;
 
-        foreach (var k in kdb.KategoriLista)
+        foreach(var k in lista)
         {
-            combobox7.InsertText(i, k);
-            i++;      
+            combobox7.InsertText(i, k.Namn);
+            i++;
         }
+
+      
+
     }
-}
+    }
+
+
+    
 
 
