@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Gtk;
-using logic;
+﻿using Gtk;
+
 
 namespace test
 {
@@ -14,11 +11,6 @@ namespace test
             MainWindow win = new MainWindow();
             win.Show();
             Application.Run();
-            
-
-           
-           
-
         }
     }
 }

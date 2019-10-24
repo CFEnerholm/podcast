@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using logic;
 using Newtonsoft.Json;
 
 
 namespace logic
 {
-    public class SerializerService
+		public class SerializerService
     {
         public void Serialize(string filename, List<Kategori> KategoriLista)
         {
@@ -30,7 +28,7 @@ namespace logic
              using (var jr = new JsonTextReader(sr))
               {
                var list = serializer.Deserialize<List<Kategori>>(jr);
-               return list;
+                    return list;
               }
             }
                

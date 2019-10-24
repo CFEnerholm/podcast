@@ -1,5 +1,4 @@
-﻿using System;
-namespace logic
+﻿namespace logic
 {
     public class Avsnitt
     {

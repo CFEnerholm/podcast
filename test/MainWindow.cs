@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using Gtk;
 using logic;
 
@@ -13,10 +11,6 @@ public partial class MainWindow : Gtk.Window
         Build();
         FillComboBoxes();
         FyllKategorier();
-        
-        
-
-
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -43,18 +37,15 @@ public partial class MainWindow : Gtk.Window
         var lista = service.GetKategori();
         var i = 0;
 
-        foreach(var k in lista)
+        foreach (var k in lista)
         {
             combobox7.InsertText(i, k.Namn);
             i++;
         }
-
-      
-
     }
-    }
+}
 
 
-    
+
 
 

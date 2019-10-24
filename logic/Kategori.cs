@@ -6,14 +6,14 @@ namespace logic
 {
     public class Kategori
     {
-        
+
         public String Namn { get; set; }
 
         public Kategori(String namn)
         {
-            
+
             Namn = namn;
-            
+
 
         }
     }
