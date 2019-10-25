@@ -1,10 +1,10 @@
-<<<<<<< HEAD
+
 ﻿using System;
-=======
+
 using System;
 using System.Collections.Generic;
 using System.IO;
->>>>>>> 0d22b37... jhf
+
 using Gtk;
 using logic;
 
@@ -15,16 +15,13 @@ public partial class MainWindow : Gtk.Window
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
         Build();
-<<<<<<< HEAD
-        FillComboBoxes();
-        FyllKategorier();
-=======
+
         FyllComboBoxKategorier();
         FillComboBoxFrekvens();
         FillTreeviewKategori();
         FillTreeviewAvsnitt();
         FillTreeviewPodcast();
->>>>>>> 0d22b37... jhf
+
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -54,12 +51,9 @@ public partial class MainWindow : Gtk.Window
             combobox7.InsertText(i, k.Namn);
             i++;
         }
-<<<<<<< HEAD
-    }
-}
 
-=======
-    }    
+    }
+
 
     private void FillTreeviewKategori()
     {
@@ -77,12 +71,12 @@ public partial class MainWindow : Gtk.Window
 
         foreach (var k in lista)
         {
-            kategoriListStore.AppendValues(k);
+            kategoriListStore.AppendValues(k.Namn);
             i++;
         }
         treeviewKategorier.Model = kategoriListStore;
     }
->>>>>>> 0d22b37... jhf
+
 
     private void FillTreeviewAvsnitt()
     {
@@ -96,10 +90,9 @@ public partial class MainWindow : Gtk.Window
 
         avsnittColumn.AddAttribute(avsnittNameCell, "text", 0);
 
-<<<<<<< HEAD
-=======
+
         Gtk.ListStore avsnittListStore = new Gtk.ListStore(typeof(string));
->>>>>>> 0d22b37... jhf
+
 
         avsnittListStore.AppendValues("Avsnitt 1");
         avsnittListStore.AppendValues("Avsnitt 2");

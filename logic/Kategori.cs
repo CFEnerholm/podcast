@@ -11,14 +11,7 @@ namespace logic
 
         public Kategori(String namn)
         {
-<<<<<<< HEAD
-
             Namn = namn;
-
-
-=======
-            Namn = namn;
->>>>>>> 0d22b37... jhf
         }
     }
 }
