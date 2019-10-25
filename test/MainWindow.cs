@@ -54,7 +54,6 @@ public partial class MainWindow : Gtk.Window
 
     }
 
-
     private void FillTreeviewKategori()
     {
         var service = new Service();
@@ -76,7 +75,6 @@ public partial class MainWindow : Gtk.Window
         }
         treeviewKategorier.Model = kategoriListStore;
     }
-
 
     private void FillTreeviewAvsnitt()
     {
