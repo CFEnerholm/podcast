@@ -1,10 +1,5 @@
 
 ﻿using System;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-
 using Gtk;
 using logic;
 
@@ -54,12 +49,13 @@ public partial class MainWindow : Gtk.Window
 
     }
 
+   
     private void FillTreeviewKategori()
     {
         var service = new Service();
         var lista = service.GetKategori();
         var i = 0;
-
+        
         Gtk.TreeViewColumn kategoriColumn = new Gtk.TreeViewColumn();
         kategoriColumn.Title = "Kategorier:";
         Gtk.CellRendererText kategoriNameCell = new Gtk.CellRendererText();
@@ -136,6 +132,21 @@ public partial class MainWindow : Gtk.Window
         podcastListStore.AppendValues("132", "Tankesmedjean i P3", "VarjeTimme", "Humor");
 
         treeviewPodcast.Model = podcastListStore;
+    }
+
+    protected void LaggTillKategori(object sender, EventArgs e)
+    {
+        var kategori = entryKategori.Text;
+        Kategori newKategori = new Kategori(kategori);
+        var service = new Service();
+        service.NewKategori(newKategori);
+        String clear = "";
+        entryKategori.Text = clear;
+
+        
+        
+        
+
     }
 }
 

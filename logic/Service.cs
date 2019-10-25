@@ -35,6 +35,17 @@ namespace logic
                 return lista;
             }
         }
+
+        public void NewKategori(Kategori Kategori)
+        {
+            var kategori = Kategori;
+            var serializerService = new SerializerService();
+            var jsonFilename = "kategori.json";
+            var kategoriLista = serializerService.Deserialize(jsonFilename);
+            kategoriLista.Add(kategori);
+            serializerService.Serialize(jsonFilename, kategoriLista);
+
+        }
     }
 }
 

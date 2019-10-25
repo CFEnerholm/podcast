@@ -53,7 +53,7 @@ public partial class MainWindow
 
 	private global::Gtk.TreeView treeviewKategorier;
 
-	private global::Gtk.Entry entry6;
+	private global::Gtk.Entry entryKategori;
 
 	private global::Gtk.VBox vbox19;
 
@@ -281,14 +281,14 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox17[this.GtkScrolledWindow]));
 		w22.Position = 0;
 		// Container child vbox17.Gtk.Box+BoxChild
-		this.entry6 = new global::Gtk.Entry();
-		this.entry6.WidthRequest = 300;
-		this.entry6.CanFocus = true;
-		this.entry6.Name = "entry6";
-		this.entry6.IsEditable = true;
-		this.entry6.InvisibleChar = '●';
-		this.vbox17.Add(this.entry6);
-		global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox17[this.entry6]));
+		this.entryKategori = new global::Gtk.Entry();
+		this.entryKategori.WidthRequest = 300;
+		this.entryKategori.CanFocus = true;
+		this.entryKategori.Name = "entryKategori";
+		this.entryKategori.IsEditable = true;
+		this.entryKategori.InvisibleChar = '●';
+		this.vbox17.Add(this.entryKategori);
+		global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vbox17[this.entryKategori]));
 		w23.Position = 1;
 		w23.Expand = false;
 		w23.Fill = false;
@@ -367,5 +367,6 @@ public partial class MainWindow
 		this.DefaultHeight = 427;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.rightSaveButton.Clicked += new global::System.EventHandler(this.LaggTillKategori);
 	}
 }

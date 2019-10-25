@@ -284,7 +284,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Entry" id="entry6">
+                  <widget class="Gtk.Entry" id="entryKategori">
                     <property name="MemberName" />
                     <property name="WidthRequest">300</property>
                     <property name="CanFocus">True</property>
@@ -319,6 +319,7 @@
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">Spara</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="LaggTillKategori" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
