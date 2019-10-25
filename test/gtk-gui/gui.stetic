@@ -7,7 +7,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/test.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="860 427">
+  <widget class="Gtk.Window" id="MainWindow" design-size="877 427">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -27,7 +27,7 @@
                 <property name="CanFocus">True</property>
                 <property name="ShadowType">In</property>
                 <child>
-                  <widget class="Gtk.NodeView" id="nodeview1">
+                  <widget class="Gtk.TreeView" id="treeviewPodcast">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                   </widget>
@@ -170,21 +170,6 @@
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
                         <child>
-                          <widget class="Gtk.Button" id="leftNewButton">
-                            <property name="MemberName" />
-                            <property name="CanFocus">True</property>
-                            <property name="Type">TextOnly</property>
-                            <property name="Label" translatable="yes">Ny...</property>
-                            <property name="UseUnderline">True</property>
-                          </widget>
-                          <packing>
-                            <property name="Position">0</property>
-                            <property name="AutoSize">True</property>
-                            <property name="Expand">False</property>
-                            <property name="Fill">False</property>
-                          </packing>
-                        </child>
-                        <child>
                           <widget class="Gtk.Button" id="leftSaveButton">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
@@ -193,7 +178,7 @@
                             <property name="UseUnderline">True</property>
                           </widget>
                           <packing>
-                            <property name="Position">1</property>
+                            <property name="Position">0</property>
                             <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
@@ -208,7 +193,7 @@
                             <property name="UseUnderline">True</property>
                           </widget>
                           <packing>
-                            <property name="Position">2</property>
+                            <property name="Position">1</property>
                             <property name="AutoSize">True</property>
                             <property name="Expand">False</property>
                             <property name="Fill">False</property>
@@ -243,35 +228,19 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Label" id="podcastLabel">
-                    <property name="MemberName" />
-                    <property name="WidthRequest">500</property>
-                    <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Namn på podcast</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-                <child>
                   <widget class="Gtk.ScrolledWindow" id="scrolledwindow2">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="ShadowType">In</property>
                     <child>
-                      <widget class="Gtk.TextView" id="textview7">
+                      <widget class="Gtk.TreeView" id="treeviewAvsnitt">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
-                        <property name="Editable">False</property>
-                        <property name="Text" translatable="yes" />
                       </widget>
                     </child>
                   </widget>
                   <packing>
-                    <property name="Position">1</property>
+                    <property name="Position">0</property>
                     <property name="AutoSize">True</property>
                   </packing>
                 </child>
@@ -294,45 +263,18 @@
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.VBox" id="vbox15">
-                <property name="MemberName" />
-                <property name="Spacing">6</property>
-                <child>
-                  <widget class="Gtk.Label" id="kategoriLabel">
-                    <property name="MemberName" />
-                    <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Kategorier:</property>
-                  </widget>
-                  <packing>
-                    <property name="Position">0</property>
-                    <property name="AutoSize">True</property>
-                    <property name="Expand">False</property>
-                    <property name="Fill">False</property>
-                  </packing>
-                </child>
-              </widget>
-              <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
               <widget class="Gtk.VBox" id="vbox17">
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
+                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
                     <property name="MemberName" />
                     <property name="ShadowType">In</property>
                     <child>
-                      <widget class="Gtk.TextView" id="textview6">
+                      <widget class="Gtk.TreeView" id="treeviewKategorier">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="ShowScrollbars">True</property>
-                        <property name="Editable">False</property>
-                        <property name="Text" translatable="yes" />
                       </widget>
                     </child>
                   </widget>
@@ -344,6 +286,7 @@
                 <child>
                   <widget class="Gtk.Entry" id="entry6">
                     <property name="MemberName" />
+                    <property name="WidthRequest">300</property>
                     <property name="CanFocus">True</property>
                     <property name="IsEditable">True</property>
                     <property name="InvisibleChar">●</property>
@@ -357,7 +300,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">1</property>
+                <property name="Position">0</property>
                 <property name="AutoSize">True</property>
               </packing>
             </child>
@@ -370,20 +313,6 @@
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Button" id="rightNewButton">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="Type">TextOnly</property>
-                        <property name="Label" translatable="yes">Ny...</property>
-                        <property name="UseUnderline">True</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">0</property>
-                        <property name="AutoSize">False</property>
-                        <property name="Fill">False</property>
-                      </packing>
-                    </child>
-                    <child>
                       <widget class="Gtk.Button" id="rightSaveButton">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
@@ -392,7 +321,7 @@
                         <property name="UseUnderline">True</property>
                       </widget>
                       <packing>
-                        <property name="Position">1</property>
+                        <property name="Position">0</property>
                         <property name="AutoSize">False</property>
                         <property name="Fill">False</property>
                       </packing>
@@ -406,7 +335,7 @@
                         <property name="UseUnderline">True</property>
                       </widget>
                       <packing>
-                        <property name="Position">2</property>
+                        <property name="Position">1</property>
                         <property name="AutoSize">False</property>
                         <property name="Fill">False</property>
                       </packing>
@@ -420,11 +349,10 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.Label" id="avsnittsLabel">
+                  <widget class="Gtk.Label" id="label1">
                     <property name="MemberName" />
-                    <property name="WidthRequest">300</property>
                     <property name="Xalign">0</property>
-                    <property name="LabelProp" translatable="yes">Namn på podcast och avsnitt</property>
+                    <property name="LabelProp" translatable="yes">Podcast #1 - Avsnitt #3</property>
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -434,15 +362,14 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.ScrolledWindow" id="episodeInfoScrolledWindow">
+                  <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow1">
                     <property name="MemberName" />
                     <property name="ShadowType">In</property>
                     <child>
-                      <widget class="Gtk.TextView" id="episodeInfoTextview">
+                      <widget class="Gtk.TextView" id="textviewAvsnitt">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="ShowScrollbars">True</property>
-                        <property name="Editable">False</property>
                         <property name="Text" translatable="yes" />
                       </widget>
                     </child>
@@ -454,7 +381,7 @@
                 </child>
               </widget>
               <packing>
-                <property name="Position">2</property>
+                <property name="Position">1</property>
                 <property name="AutoSize">True</property>
               </packing>
             </child>

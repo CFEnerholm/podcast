@@ -22,8 +22,6 @@ namespace logic
                 var kategoriLista = serializerService.Deserialize(jsonFilename);
 
                 return kategoriLista;
-
-
             }
 
             else
@@ -32,7 +30,6 @@ namespace logic
                 {
                    new Kategori("Sport"),
                    new Kategori("Historia")
-
                 };
                 serializerService.Serialize(jsonFilename, lista);
                 return lista;
