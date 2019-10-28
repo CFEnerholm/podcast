@@ -3,31 +3,39 @@ using System.IO;
 using Newtonsoft.Json;
 
 
-namespace logic
+namespace Data
 {
 		public class SerializerService
     {
-        public void Serialize(string filename, List<Kategori> KategoriLista)
+        public List<object> List;
+
+            public SerializerService()
+        {
+               List = new List<object>();
+        }
+
+
+        public void Serialize(string filename, List<object> Lista)
         {
             var serializer = CreateSerializer();
             using (var sw = new StreamWriter(filename))
             {
                 using (var jw = new JsonTextWriter(sw))
                 {
-                    serializer.Serialize(jw, KategoriLista);
+                    serializer.Serialize(jw, Lista);
                 }
             }
         }
 
 
-        public List<Kategori> Deserialize(string filename)
+        public List<object> Deserialize(string filename)
         {
            var serializer = CreateSerializer();
            using (var sr = new StreamReader(filename))
            {
              using (var jr = new JsonTextReader(sr))
               {
-               var list = serializer.Deserialize<List<Kategori>>(jr);
+               var list = serializer.Deserialize<List<object>>(jr);
                     return list;
               }
             }

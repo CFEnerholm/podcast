@@ -12,6 +12,6 @@ namespace logic
         public Kategori(String namn)
         {
             Namn = namn;
-        }
+        }   
     }
 }

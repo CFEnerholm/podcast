@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ServiceModel.Syndication;
 
 namespace Data
 {
-    public class MyClass
+    public class RSSReader
     {
-        public MyClass()
+        public RSSReader()
         {
         }
     }

@@ -319,7 +319,7 @@
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">Spara</property>
                         <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="LaggTillKategori" />
+                        <signal name="Clicked" handler="AddKategori" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -334,6 +334,7 @@
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">Ta Bort...</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="RemoveKategori" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>

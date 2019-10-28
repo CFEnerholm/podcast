@@ -38,8 +38,7 @@
     <Compile Include="Frekvens.cs" />
     <Compile Include="Avsnitt.cs" />
     <Compile Include="Podcast.cs" />
-    <Compile Include="SerializerService.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="ListMaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

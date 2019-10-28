@@ -11,7 +11,7 @@ public partial class MainWindow : Gtk.Window
     {
         Build();
 
-        FyllComboBoxKategorier();
+        FillComboBoxKategorier();
         FillComboBoxFrekvens();
         FillTreeviewKategori();
         FillTreeviewAvsnitt();
@@ -35,10 +35,10 @@ public partial class MainWindow : Gtk.Window
         }
     }
 
-    public void FyllComboBoxKategorier()
+    public void FillComboBoxKategorier()
     {
-        var service = new Service();
-        var lista = service.GetKategori();
+        var listMaker = new ListMaker();
+        var lista = listMaker.GetKategorier();
         var i = 0;
 
         foreach (var k in lista)
@@ -46,16 +46,14 @@ public partial class MainWindow : Gtk.Window
             combobox7.InsertText(i, k.Namn);
             i++;
         }
-
     }
-
    
     private void FillTreeviewKategori()
     {
-        var service = new Service();
-        var lista = service.GetKategori();
+        var listMaker = new ListMaker();
+        var lista = listMaker.GetKategorier();
         var i = 0;
-        
+
         Gtk.TreeViewColumn kategoriColumn = new Gtk.TreeViewColumn();
         kategoriColumn.Title = "Kategorier:";
         Gtk.CellRendererText kategoriNameCell = new Gtk.CellRendererText();
@@ -70,6 +68,19 @@ public partial class MainWindow : Gtk.Window
             i++;
         }
         treeviewKategorier.Model = kategoriListStore;
+    }
+
+    private void RemoveColumn(TreeView treeview)
+    {
+        treeview.RemoveColumn(treeview.GetColumn(0));
+    }
+
+    private void RemoveComboBox(ComboBox comboBox)
+    {
+        var i = 0;
+        var list = combobox7.
+
+        comboBox.RemoveDataById(i);
     }
 
     private void FillTreeviewAvsnitt()
@@ -134,19 +145,29 @@ public partial class MainWindow : Gtk.Window
         treeviewPodcast.Model = podcastListStore;
     }
 
-    protected void LaggTillKategori(object sender, EventArgs e)
+    protected void AddKategori(object sender, EventArgs e)
     {
         var kategori = entryKategori.Text;
-        Kategori newKategori = new Kategori(kategori);
-        var service = new Service();
-        service.NewKategori(newKategori);
+        var newKategori = new Kategori(kategori);
+        var listMaker = new ListMaker();
+        listMaker.AddKategori(newKategori);
         String clear = "";
         entryKategori.Text = clear;
+        RemoveColumn(treeviewKategorier);
+        FillTreeviewKategori();
+    }
 
-        
-        
-        
-
+    protected void RemoveKategori(object sender, EventArgs e)
+    {
+        var kategori = entryKategori.Text;
+        var listMaker = new ListMaker();
+        listMaker.RemoveKategori(kategori);
+        String clear = "";
+        entryKategori.Text = clear;
+        RemoveColumn(treeviewKategorier);
+        RemoveComboBox(combobox7);
+        FillTreeviewKategori();
+        FillComboBoxKategorier();
     }
 }
 

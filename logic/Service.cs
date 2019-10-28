@@ -46,6 +46,17 @@ namespace logic
             serializerService.Serialize(jsonFilename, kategoriLista);
 
         }
+
+        public void RemoveKategori(Kategori Kategori)
+        {
+            var kategori = Kategori;
+            var serializerService = new SerializerService();
+            var jsonFilename = "kategori.json";
+            var kategoriLista = serializerService.Deserialize(jsonFilename);
+            kategoriLista.Remove(kategori);
+            serializerService.Serialize(jsonFilename, kategoriLista);
+
+        }
     }
 }
 
