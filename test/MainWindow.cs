@@ -18,8 +18,9 @@ public partial class MainWindow : Gtk.Window
         FillComboBoxKategorier();
         FillComboBoxFrekvens();
         FillTreeviewKategori();
-        FillTreeviewAvsnitt();
         FillTreeviewPodcast();
+        FillTreeviewAvsnitt();
+        
 
     }
 
@@ -120,6 +121,11 @@ public partial class MainWindow : Gtk.Window
 
     private void FillTreeviewPodcast()
     {
+        var listMaker = new ListMaker();
+        var lista = listMaker.CreatePodcast();
+        var i = 0;
+
+
         Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
         avsnittColumn.Title = "Avsnitt:";
         Gtk.TreeViewColumn namnColumn = new Gtk.TreeViewColumn();
@@ -150,8 +156,16 @@ public partial class MainWindow : Gtk.Window
 
         Gtk.ListStore podcastListStore = new ListStore(typeof(string), typeof(string), typeof(string), typeof(string));
 
-        podcastListStore.AppendValues("20", "P3 Historia", "VarjeHalvtimme", "Historia");
-        podcastListStore.AppendValues("132", "Tankesmedjean i P3", "VarjeTimme", "Humor");
+
+        foreach (var p in lista)
+        {
+            var namn = p.PodcastNamn;
+            var frekvens = p.Frekvensen;
+            var kategori = p.Kategorin;
+            i++;
+            podcastListStore.AppendValues("20", namn, frekvens, kategori);
+        }
+
 
         treeviewPodcast.Model = podcastListStore;
     }
@@ -199,7 +213,6 @@ public partial class MainWindow : Gtk.Window
     {
         var listMaker = new ListMaker();
         var lista = listMaker.CreateAvsnit();
-        var i = 0;
         var model = treeviewAvsnitt.Model;
 
         TreeIter iter;
@@ -215,7 +228,7 @@ public partial class MainWindow : Gtk.Window
 
 
 
-        textviewAvsnitt.Buffer.Text = output;
+        textviewAvsnitt.Buffer.Text = output; 
 
       
 

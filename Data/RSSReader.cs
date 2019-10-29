@@ -9,20 +9,14 @@ namespace Data
 {
     public class RSSReader
     {
+        public List<String> ListOfPodcast { set; get; }
+
         public RSSReader()
         {
 
         }
 
-        public List<String> GetPodcast(String title, String URL)
-        {
-            List<string> myList = new List<string>();
-            myList.Add(title);
-            myList.Add(URL);
-
-            return myList;
-
-        }
+        
 
         public List<List<String>> GetFeed()
         {
@@ -30,8 +24,10 @@ namespace Data
             XmlReader r = XmlReader.Create("https://api.sr.se/api/rss/pod/23791");
             SyndicationFeed f = SyndicationFeed.Load(r);
             var PodTitle = f.Title.Text;
+            
 
-            GetPodcast(PodTitle, u.ToString());
+            ListOfPodcast.Add(PodTitle);
+            ListOfPodcast.Add(u.ToString());
 
             List<List<string>> myList = new List<List<string>>();
 

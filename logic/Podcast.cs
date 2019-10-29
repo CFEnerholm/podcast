@@ -8,9 +8,12 @@ namespace logic
         public Frekvens Frekvensen { get; set; }
         public Kategori Kategorin { get; set; }
 
-        public Podcast()
+        public Podcast(string titel, string url)
         {
-            
+            URL = url;
+            PodcastNamn = titel;
+            Frekvensen = Frekvens.VarjeHalvtimme;
+            Kategorin = new Kategori("Historia");
         }
     }
 }

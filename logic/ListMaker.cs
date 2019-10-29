@@ -10,6 +10,7 @@ namespace logic
         public JsonService Service;
         public RSSReader Reader;
         public List<Avsnitt> allaAvsnitt = new List<Avsnitt>();
+        public List<Podcast> allaPodcasts = new List<Podcast>();
 
         public ListMaker()
         {
@@ -53,6 +54,19 @@ namespace logic
                 allaAvsnitt.Add(ettavsnitt);
             }
             return allaAvsnitt;
+
+        }
+
+        public List<Podcast> CreatePodcast()
+        {
+            var list = Reader.ListOfPodcast;
+
+            var title = list.ElementAt(0);
+            var url = list.ElementAt(1);
+            var enPodcast = new Podcast(title, url);
+            allaPodcasts.Add(enPodcast);
+
+            return allaPodcasts;
 
         }
     }
