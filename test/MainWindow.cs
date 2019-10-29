@@ -1,11 +1,14 @@
 
 ﻿using System;
+using System.Collections.Generic;
 using Gtk;
 using logic;
 
 
 public partial class MainWindow : Gtk.Window
 {
+    string gtkKategori = "";
+
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -76,11 +79,13 @@ public partial class MainWindow : Gtk.Window
     }
 
     private void RemoveComboBox(ComboBox comboBox)
+        
     {
-        var i = 0;
-        var list = combobox7.
+        int[] a = new int[30];
+        foreach (var p in a) {
+            combobox7.RemoveText(p);
+        }
 
-        comboBox.RemoveDataById(i);
     }
 
     private void FillTreeviewAvsnitt()
@@ -155,6 +160,8 @@ public partial class MainWindow : Gtk.Window
         entryKategori.Text = clear;
         RemoveColumn(treeviewKategorier);
         FillTreeviewKategori();
+        RemoveComboBox(combobox7);
+        FillComboBoxKategorier();
     }
 
     protected void RemoveKategori(object sender, EventArgs e)
@@ -165,9 +172,24 @@ public partial class MainWindow : Gtk.Window
         String clear = "";
         entryKategori.Text = clear;
         RemoveColumn(treeviewKategorier);
-        RemoveComboBox(combobox7);
         FillTreeviewKategori();
+        RemoveComboBox(combobox7);
         FillComboBoxKategorier();
     }
-}
 
+  
+  
+
+    protected void OnTreeviewKategorierRowActivated(object o, RowActivatedArgs args)
+    {
+        var model = treeviewKategorier.Model;
+        TreeIter iter;
+        model.GetIter(out iter, args.Path);
+        object value = model.GetValue(iter, 0);
+        gtkKategori = value.ToString();
+
+        entryKategori.Text = gtkKategori;       // här sätter vi värdet value till fältet gtkKategori helt i onödan men man
+                                                // hade någon tanke om att fält skulle vara bra för att slippa rendundans men nu
+    }                                           // är jag så jävla trött så jag vet inte vad jag tänker...
+}                                               // nu kan man iaf klicka för att ta bort markerad och combobox funkar!
+                                                

@@ -275,7 +275,10 @@ public partial class MainWindow
 		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
 		this.treeviewKategorier = new global::Gtk.TreeView();
 		this.treeviewKategorier.CanFocus = true;
+		this.treeviewKategorier.Events = ((global::Gdk.EventMask)(278));
+		this.treeviewKategorier.ExtensionEvents = ((global::Gdk.ExtensionMode)(1));
 		this.treeviewKategorier.Name = "treeviewKategorier";
+		this.treeviewKategorier.SearchColumn = 0;
 		this.GtkScrolledWindow.Add(this.treeviewKategorier);
 		this.vbox17.Add(this.GtkScrolledWindow);
 		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox17[this.GtkScrolledWindow]));
@@ -367,6 +370,7 @@ public partial class MainWindow
 		this.DefaultHeight = 427;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.treeviewKategorier.RowActivated += new global::Gtk.RowActivatedHandler(this.OnTreeviewKategorierRowActivated);
 		this.rightSaveButton.Clicked += new global::System.EventHandler(this.AddKategori);
 		this.rightRemoveButton.Clicked += new global::System.EventHandler(this.RemoveKategori);
 	}

@@ -274,7 +274,11 @@
                       <widget class="Gtk.TreeView" id="treeviewKategorier">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
+                        <property name="Events">ExposureMask, PointerMotionMask, ButtonMotionMask, ButtonPressMask</property>
+                        <property name="ExtensionEvents">All</property>
                         <property name="ShowScrollbars">True</property>
+                        <property name="SearchColumn">0</property>
+                        <signal name="RowActivated" handler="OnTreeviewKategorierRowActivated" />
                       </widget>
                     </child>
                   </widget>
