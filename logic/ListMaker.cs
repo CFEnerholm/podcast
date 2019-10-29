@@ -8,10 +8,13 @@ namespace logic
     public class ListMaker
     {
         public JsonService Service;
+        public RSSReader Reader;
+        public List<Avsnitt> allaAvsnitt = new List<Avsnitt>();
 
         public ListMaker()
         {
             Service = new JsonService();
+            Reader = new RSSReader();
         }
 
         public List<Kategori> GetKategorier()
@@ -35,6 +38,22 @@ namespace logic
         public void RemoveKategori(String kategori)
         {
             Service.RemoveItemFromList(kategori, "kategori.json");
+        }
+
+        public List<Avsnitt> CreateAvsnit()
+        {
+            var list = Reader.GetFeed();
+            
+
+            foreach (var a in list)
+            {
+                var title = a.ElementAt(0);
+                var beskrivning = a.ElementAt(1);
+                var ettavsnitt = new Avsnitt(title, beskrivning);
+                allaAvsnitt.Add(ettavsnitt);
+            }
+            return allaAvsnitt;
+
         }
     }
 }

@@ -247,6 +247,7 @@ public partial class MainWindow
 		// Container child scrolledwindow2.Gtk.Container+ContainerChild
 		this.treeviewAvsnitt = new global::Gtk.TreeView();
 		this.treeviewAvsnitt.CanFocus = true;
+		this.treeviewAvsnitt.Events = ((global::Gdk.EventMask)(20));
 		this.treeviewAvsnitt.Name = "treeviewAvsnitt";
 		this.scrolledwindow2.Add(this.treeviewAvsnitt);
 		this.vbox25.Add(this.scrolledwindow2);
@@ -370,6 +371,7 @@ public partial class MainWindow
 		this.DefaultHeight = 427;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.treeviewAvsnitt.RowActivated += new global::Gtk.RowActivatedHandler(this.ShowDescription);
 		this.treeviewKategorier.RowActivated += new global::Gtk.RowActivatedHandler(this.OnTreeviewKategorierRowActivated);
 		this.rightSaveButton.Clicked += new global::System.EventHandler(this.AddKategori);
 		this.rightRemoveButton.Clicked += new global::System.EventHandler(this.RemoveKategori);

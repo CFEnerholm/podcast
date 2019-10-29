@@ -2,6 +2,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gtk;
+using System.Linq;
 using logic;
 
 
@@ -90,6 +91,10 @@ public partial class MainWindow : Gtk.Window
 
     private void FillTreeviewAvsnitt()
     {
+        var listMaker = new ListMaker();
+        var lista = listMaker.CreateAvsnit();
+        var i = 0;
+
         Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
         avsnittColumn.Title = "Avsnitt:";
 
@@ -104,10 +109,11 @@ public partial class MainWindow : Gtk.Window
         Gtk.ListStore avsnittListStore = new Gtk.ListStore(typeof(string));
 
 
-        avsnittListStore.AppendValues("Avsnitt 1");
-        avsnittListStore.AppendValues("Avsnitt 2");
-        avsnittListStore.AppendValues("Avsnitt 3");
-        avsnittListStore.AppendValues("Avsnitt 4");
+        foreach (var k in lista)
+        {
+            avsnittListStore.AppendValues(k.AvsnittsNamn);
+            i++;
+        }
 
         treeviewAvsnitt.Model = avsnittListStore;
     }
@@ -177,9 +183,6 @@ public partial class MainWindow : Gtk.Window
         FillComboBoxKategorier();
     }
 
-  
-  
-
     protected void OnTreeviewKategorierRowActivated(object o, RowActivatedArgs args)
     {
         var model = treeviewKategorier.Model;
@@ -188,8 +191,34 @@ public partial class MainWindow : Gtk.Window
         object value = model.GetValue(iter, 0);
         gtkKategori = value.ToString();
 
-        entryKategori.Text = gtkKategori;       // här sätter vi värdet value till fältet gtkKategori helt i onödan men man
-                                                // hade någon tanke om att fält skulle vara bra för att slippa rendundans men nu
-    }                                           // är jag så jävla trött så jag vet inte vad jag tänker...
-}                                               // nu kan man iaf klicka för att ta bort markerad och combobox funkar!
+        entryKategori.Text = gtkKategori;       
+                                                
+    }                                           
+
+    protected void ShowDescription(object o, RowActivatedArgs args)
+    {
+        var listMaker = new ListMaker();
+        var lista = listMaker.CreateAvsnit();
+        var i = 0;
+        var model = treeviewAvsnitt.Model;
+
+        TreeIter iter;
+        model.GetIter(out iter, args.Path);
+        object value = model.GetValue(iter, 0);
+        var gtkAvsnitt = value.ToString();
+
+       var description = lista
+            .Where((p) => p.AvsnittsNamn.Equals(gtkAvsnitt))
+            .Select(p => p.Podcasten);
+
+        string output = description.ElementAt(0);
+
+
+
+        textviewAvsnitt.Buffer.Text = output;
+
+      
+
+    }
+}                                              
                                                 
