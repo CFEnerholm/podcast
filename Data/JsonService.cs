@@ -23,34 +23,32 @@ namespace Data
 
         else
         {
-            var list = new List<Object>
-                {
-                 
-                };
+            var list = new List<Object>();
             serializerService.Serialize(jsonFilename, list);
             return list;
         }
     }
 
+      
 
-        public void AddItemToList(Object Kategori, String filename)
+        public void AddItemToList(Object Item, String filename)
         {
-            var kategori = Kategori;
+            var item = Item;
             var serializerService = new SerializerService();
             var jsonFilename = filename;
-            var kategoriLista = serializerService.Deserialize(jsonFilename);
-            kategoriLista.Add(kategori);
-            serializerService.Serialize(jsonFilename, kategoriLista);
+            var lista = serializerService.Deserialize(jsonFilename);
+            lista.Add(item);
+            serializerService.Serialize(jsonFilename, lista);
         }
 
-        public void RemoveItemFromList(Object Kategori, String filename)
+        public void RemoveItemFromList(Object Item, String filename)
         {
-            var kategori = Kategori;
+            var item = Item;
             var serializerService = new SerializerService();
             var jsonFilename = filename;
-            var kategoriLista = serializerService.Deserialize(jsonFilename);
-            kategoriLista.Remove(kategori);
-            serializerService.Serialize(jsonFilename, kategoriLista);
+            var lista = serializerService.Deserialize(jsonFilename);
+            lista.Remove(item);
+            serializerService.Serialize(jsonFilename, lista);
         }
     }
 }

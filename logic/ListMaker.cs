@@ -24,13 +24,28 @@ namespace logic
         {
             var list = Service.GetList("kategori.json");
             var kategoriList = new List<Kategori>();
-
+            
             foreach (var k in list)
             {
                 var kat = new Kategori(k.ToString());
                 kategoriList.Add(kat);
             }
             return kategoriList;
+        }
+
+        public List<Podcast> GetPodcasts()
+        {
+            var list = Service.GetList("podcast.json");
+            var podcastList = new List<Podcast>();
+
+            foreach (Podcast p in list)
+            {
+                
+                var pod = new Podcast(p.Namn, p.URL );
+
+                podcastList.Add(pod);
+            }
+            return podcastList;
         }
 
         public void AddKategori(Kategori kategori)
@@ -42,6 +57,19 @@ namespace logic
         {
             Service.RemoveItemFromList(kategori, "kategori.json");
         }
+
+        public void AddPodcast(Podcast podcast)
+        {
+            Service.AddItemToList(podcast.Namn, "podcast.json");
+        }
+
+        public void RemovePodcast(String podcast)
+        {
+            Service.RemoveItemFromList(podcast, "podcast.json");
+        }
+
+        
+        
 
         public void CreatePodcast()
         {

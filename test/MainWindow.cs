@@ -159,7 +159,7 @@ public partial class MainWindow : Gtk.Window
 
         foreach (var p in lista)
         {
-            var namn = p.PodcastNamn;
+            var namn = p.Namn;
             var frekvens = p.Frekvensen;
             var kategori = p.Kategorin;
             i++;
