@@ -16,6 +16,8 @@ namespace logic
         {
             Service = new JsonService();
             Reader = new RSSReader();
+            CreatePodcast();
+            CreateAvsnitt();
         }
 
         public List<Kategori> GetKategorier()
@@ -41,33 +43,29 @@ namespace logic
             Service.RemoveItemFromList(kategori, "kategori.json");
         }
 
-        public List<Avsnitt> CreateAvsnit()
+        public void CreatePodcast()
         {
-            var list = Reader.GetFeed();
-            
+            var podcast = Reader.ListOfPodcast;
+          
+                var title = podcast.ElementAt(0);
+                var url = podcast.ElementAt(1);
+                var thePodcast = new Podcast(title, url);
 
-            foreach (var a in list)
+            allaPodcasts.Add(thePodcast);
+        }
+
+        public void CreateAvsnitt()
+        {
+            var avsnitt = Reader.ListOfAvsnitt;
+
+            foreach (var a in avsnitt)
             {
                 var title = a.ElementAt(0);
                 var beskrivning = a.ElementAt(1);
-                var ettavsnitt = new Avsnitt(title, beskrivning);
-                allaAvsnitt.Add(ettavsnitt);
+                var ettAvsnitt = new Avsnitt(title, beskrivning);
+
+                allaAvsnitt.Add(ettAvsnitt);
             }
-            return allaAvsnitt;
-
-        }
-
-        public List<Podcast> CreatePodcast()
-        {
-            var list = Reader.ListOfPodcast;
-
-            var title = list.ElementAt(0);
-            var url = list.ElementAt(1);
-            var enPodcast = new Podcast(title, url);
-            allaPodcasts.Add(enPodcast);
-
-            return allaPodcasts;
-
         }
     }
 }

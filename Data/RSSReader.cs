@@ -9,36 +9,46 @@ namespace Data
 {
     public class RSSReader
     {
-        public List<String> ListOfPodcast { set; get; }
+        public List<String> ListOfPodcast { set; get; } 
+        public List<List<String>> ListOfAvsnitt { set; get; }
+        public SyndicationFeed TheFeed { set; get; }
+        public String URL;
 
         public RSSReader()
         {
-
+            URL = "https://api.sr.se/api/rss/pod/23791";
+            ListOfPodcast = new List<String>();
+            ListOfAvsnitt = new List<List<String>>();
+            GetFeed();
+            GetPodcastInfo();
+            GetAvsnittsInfo();
         }
 
-        
-
-        public List<List<String>> GetFeed()
+        public void GetFeed()
         {
-            Uri u = new Uri("https://api.sr.se/api/rss/pod/23791");
-            XmlReader r = XmlReader.Create("https://api.sr.se/api/rss/pod/23791");
-            SyndicationFeed f = SyndicationFeed.Load(r);
-            var PodTitle = f.Title.Text;
+            Uri uri = new Uri(URL);
+            XmlReader r = XmlReader.Create(URL);
+            TheFeed = SyndicationFeed.Load(r);
             
+        }
 
-            ListOfPodcast.Add(PodTitle);
-            ListOfPodcast.Add(u.ToString());
+        public void GetPodcastInfo()
+        {
+            var title = TheFeed.Title.Text;
+            ListOfPodcast.Add(title);
+            ListOfPodcast.Add(URL);
+        }
 
-            List<List<string>> myList = new List<List<string>>();
-
-            foreach (SyndicationItem i in f.Items)
+        public void GetAvsnittsInfo()
+        {
+           
+            foreach (SyndicationItem i in TheFeed.Items)
             {
                 var title = i.Title.Text;
                 var summary = ((TextSyndicationContent)i.Summary).Text;
 
-                myList.Add(new List<string> { title, summary });
+                ListOfAvsnitt.Add(new List<string> { title, summary });
             }
-            return myList;
         }
     }
 }

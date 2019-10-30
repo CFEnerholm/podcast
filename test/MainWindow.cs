@@ -85,7 +85,7 @@ public partial class MainWindow : Gtk.Window
     {
         int[] a = new int[30];
         foreach (var p in a) {
-            combobox7.RemoveText(p);
+            comboBox.RemoveText(p);
         }
 
     }
@@ -93,7 +93,7 @@ public partial class MainWindow : Gtk.Window
     private void FillTreeviewAvsnitt()
     {
         var listMaker = new ListMaker();
-        var lista = listMaker.CreateAvsnit();
+        var lista = listMaker.allaAvsnitt;
         var i = 0;
 
         Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
@@ -122,7 +122,7 @@ public partial class MainWindow : Gtk.Window
     private void FillTreeviewPodcast()
     {
         var listMaker = new ListMaker();
-        var lista = listMaker.CreatePodcast();
+        var lista = listMaker.allaPodcasts;
         var i = 0;
 
 
@@ -212,7 +212,7 @@ public partial class MainWindow : Gtk.Window
     protected void ShowDescription(object o, RowActivatedArgs args)
     {
         var listMaker = new ListMaker();
-        var lista = listMaker.CreateAvsnit();
+        var lista = listMaker.allaAvsnitt;
         var model = treeviewAvsnitt.Model;
 
         TreeIter iter;
