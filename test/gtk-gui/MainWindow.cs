@@ -23,11 +23,11 @@ public partial class MainWindow
 
 	private global::Gtk.HBox hbox26;
 
-	private global::Gtk.Entry entry8;
+	private global::Gtk.Entry entryURL;
 
-	private global::Gtk.ComboBox combobox5;
+	private global::Gtk.ComboBox comboboxFrekvens;
 
-	private global::Gtk.ComboBox combobox7;
+	private global::Gtk.ComboBox comboboxKategori;
 
 	private global::Gtk.HBox hbox24;
 
@@ -149,31 +149,31 @@ public partial class MainWindow
 		this.hbox26.Name = "hbox26";
 		this.hbox26.Spacing = 6;
 		// Container child hbox26.Gtk.Box+BoxChild
-		this.entry8 = new global::Gtk.Entry();
-		this.entry8.WidthRequest = 100;
-		this.entry8.CanFocus = true;
-		this.entry8.Name = "entry8";
-		this.entry8.Text = global::Mono.Unix.Catalog.GetString("http://...");
-		this.entry8.IsEditable = true;
-		this.entry8.InvisibleChar = '●';
-		this.hbox26.Add(this.entry8);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox26[this.entry8]));
+		this.entryURL = new global::Gtk.Entry();
+		this.entryURL.WidthRequest = 100;
+		this.entryURL.CanFocus = true;
+		this.entryURL.Name = "entryURL";
+		this.entryURL.Text = global::Mono.Unix.Catalog.GetString("http://...");
+		this.entryURL.IsEditable = true;
+		this.entryURL.InvisibleChar = '●';
+		this.hbox26.Add(this.entryURL);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox26[this.entryURL]));
 		w7.Position = 0;
 		// Container child hbox26.Gtk.Box+BoxChild
-		this.combobox5 = global::Gtk.ComboBox.NewText();
-		this.combobox5.WidthRequest = 125;
-		this.combobox5.Name = "combobox5";
-		this.hbox26.Add(this.combobox5);
-		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox26[this.combobox5]));
+		this.comboboxFrekvens = global::Gtk.ComboBox.NewText();
+		this.comboboxFrekvens.WidthRequest = 125;
+		this.comboboxFrekvens.Name = "comboboxFrekvens";
+		this.hbox26.Add(this.comboboxFrekvens);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox26[this.comboboxFrekvens]));
 		w8.Position = 1;
 		w8.Expand = false;
 		w8.Fill = false;
 		// Container child hbox26.Gtk.Box+BoxChild
-		this.combobox7 = global::Gtk.ComboBox.NewText();
-		this.combobox7.WidthRequest = 125;
-		this.combobox7.Name = "combobox7";
-		this.hbox26.Add(this.combobox7);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox26[this.combobox7]));
+		this.comboboxKategori = global::Gtk.ComboBox.NewText();
+		this.comboboxKategori.WidthRequest = 125;
+		this.comboboxKategori.Name = "comboboxKategori";
+		this.hbox26.Add(this.comboboxKategori);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox26[this.comboboxKategori]));
 		w9.Position = 2;
 		w9.Expand = false;
 		w9.Fill = false;
@@ -371,6 +371,7 @@ public partial class MainWindow
 		this.DefaultHeight = 427;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.leftSaveButton.Clicked += new global::System.EventHandler(this.SavePodFeed);
 		this.treeviewAvsnitt.RowActivated += new global::Gtk.RowActivatedHandler(this.ShowDescription);
 		this.treeviewKategorier.RowActivated += new global::Gtk.RowActivatedHandler(this.OnTreeviewKategorierRowActivated);
 		this.rightSaveButton.Clicked += new global::System.EventHandler(this.AddKategori);

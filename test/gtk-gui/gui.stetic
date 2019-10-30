@@ -101,7 +101,7 @@
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Entry" id="entry8">
+                      <widget class="Gtk.Entry" id="entryURL">
                         <property name="MemberName" />
                         <property name="WidthRequest">100</property>
                         <property name="CanFocus">True</property>
@@ -115,7 +115,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.ComboBox" id="combobox5">
+                      <widget class="Gtk.ComboBox" id="comboboxFrekvens">
                         <property name="MemberName" />
                         <property name="WidthRequest">125</property>
                         <property name="IsTextCombo">True</property>
@@ -129,7 +129,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.ComboBox" id="combobox7">
+                      <widget class="Gtk.ComboBox" id="comboboxKategori">
                         <property name="MemberName" />
                         <property name="WidthRequest">125</property>
                         <property name="IsTextCombo">True</property>
@@ -176,6 +176,7 @@
                             <property name="Type">TextOnly</property>
                             <property name="Label" translatable="yes">Spara</property>
                             <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="SavePodFeed" />
                           </widget>
                           <packing>
                             <property name="Position">0</property>

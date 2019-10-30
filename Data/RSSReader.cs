@@ -35,8 +35,12 @@ namespace Data
         public void GetPodcastInfo()
         {
             var title = TheFeed.Title.Text;
+            var frekvens = "VarjeKvart";
+            var kategori = "Historia";
             ListOfPodcast.Add(title);
             ListOfPodcast.Add(URL);
+            ListOfPodcast.Add(frekvens);
+            ListOfPodcast.Add(kategori);
         }
 
         public void GetAvsnittsInfo()
