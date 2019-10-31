@@ -19,7 +19,7 @@ namespace Data
           
             ListOfAvsnitt = new List<List<String>>();
             GetFeed();
-            GetAvsnittsInfo();
+            //GetAvsnittsInfo();
         }
 
         public void GetFeed()

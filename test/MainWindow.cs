@@ -1,5 +1,5 @@
 
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Gtk;
 using System.Linq;
@@ -126,15 +126,16 @@ public partial class MainWindow : Gtk.Window
     private void RemoveColumn(TreeView treeview)
     {
         treeview.RemoveColumn(treeview.GetColumn(0));
-        
+
 
     }
 
     private void RemoveComboBox(ComboBox comboBox)
-        
+
     {
         int[] a = new int[30];
-        foreach (var p in a) {
+        foreach (var p in a)
+        {
             comboBox.RemoveText(p);
         }
 
@@ -142,8 +143,17 @@ public partial class MainWindow : Gtk.Window
 
     private void FillTreeviewAvsnitt()
     {
-        var listMaker = new ListMaker();
-        var lista = listMaker.allaAvsnitt;
+        var listmaker = new ListMaker();
+        var podcast = entryURL.Text;
+        var lista1 = listmaker.GetPodcasts();
+        var lista = new List<Avsnitt>();
+        foreach(Podcast p in lista1)
+        {
+            if (podcast.Equals(p.Namn))
+            {
+                lista = p.AvsnittsLista;
+            }
+        }
         var i = 0;
 
         Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
@@ -193,7 +203,7 @@ public partial class MainWindow : Gtk.Window
 
         var kategori = comboboxKategori.ActiveText;
         var list = listMaker.GetKategorier();
-    
+
 
         foreach (Kategori k in list)
         {
@@ -234,46 +244,48 @@ public partial class MainWindow : Gtk.Window
         object value = model.GetValue(iter, 0);
         gtkKategori = value.ToString();
 
-        entryKategori.Text = gtkKategori;       
-                                                
-    }                                           
-
-    protected void ShowDescription(object o, RowActivatedArgs args)
-    {
-        var listMaker = new ListMaker();
-        var lista = listMaker.allaAvsnitt;
-        var model = treeviewAvsnitt.Model;
-
-        TreeIter iter;
-        model.GetIter(out iter, args.Path);
-        object value = model.GetValue(iter, 0);
-        var gtkAvsnitt = value.ToString();
-
-       var description = lista
-            .Where((p) => p.AvsnittsNamn.Equals(gtkAvsnitt))
-            .Select(p => p.Podcasten);
-
-        string output = description.ElementAt(0);
-
-
-
-        textviewAvsnitt.Buffer.Text = output; 
-
-      
+        entryKategori.Text = gtkKategori;
 
     }
 
+    //protected void ShowDescription(object o, RowActivatedArgs args)
+    //{
+    //    var listMaker = new ListMaker();
+    //    var lista = listMaker.allaAvsnitt;
+    //    var model = treeviewAvsnitt.Model;
+
+    //    TreeIter iter;
+    //    model.GetIter(out iter, args.Path);
+    //    object value = model.GetValue(iter, 0);
+    //    var gtkAvsnitt = value.ToString();
+
+    //    var description = lista
+    //         .Where((p) => p.AvsnittsNamn.Equals(gtkAvsnitt))
+    //         .Select(p => p.Podcasten);
+
+    //    string output = description.ElementAt(0);
+
+
+
+    //    textviewAvsnitt.Buffer.Text = output;
+
+
+
+    //}
+
     protected void OnTreeviewPodcastRowActivated(object o, RowActivatedArgs args)
     {
-        
-            var model = treeviewPodcast.Model;
-            TreeIter iter;
-            model.GetIter(out iter, args.Path);
-            object value = model.GetValue(iter, 1);
-            gtkPodcast = value.ToString();
-            entryURL.Text = gtkPodcast;
 
-        
+        var model = treeviewPodcast.Model;
+        TreeIter iter;
+        model.GetIter(out iter, args.Path);
+        object value = model.GetValue(iter, 1);
+        gtkPodcast = value.ToString();
+        entryURL.Text = gtkPodcast;
+
+        FillTreeviewAvsnitt();
+
+
     }
 
     protected void RemovePodcast(object sender, EventArgs e)
@@ -292,5 +304,5 @@ public partial class MainWindow : Gtk.Window
 
 
     }
-}                                              
-                                                
+}
+

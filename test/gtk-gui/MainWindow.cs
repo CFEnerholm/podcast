@@ -374,7 +374,6 @@ public partial class MainWindow
 		this.treeviewPodcast.RowActivated += new global::Gtk.RowActivatedHandler(this.OnTreeviewPodcastRowActivated);
 		this.leftSaveButton.Clicked += new global::System.EventHandler(this.AddPodFeed);
 		this.leftRemoveButton.Clicked += new global::System.EventHandler(this.RemovePodcast);
-		this.treeviewAvsnitt.RowActivated += new global::Gtk.RowActivatedHandler(this.ShowDescription);
 		this.treeviewKategorier.RowActivated += new global::Gtk.RowActivatedHandler(this.OnTreeviewKategorierRowActivated);
 		this.rightSaveButton.Clicked += new global::System.EventHandler(this.AddKategori);
 		this.rightRemoveButton.Clicked += new global::System.EventHandler(this.RemoveKategori);

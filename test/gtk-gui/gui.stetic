@@ -240,7 +240,6 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Events">PointerMotionMask, ButtonMotionMask</property>
-                        <signal name="RowActivated" handler="ShowDescription" />
                       </widget>
                     </child>
                   </widget>

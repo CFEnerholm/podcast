@@ -11,16 +11,16 @@ namespace logic
         public JsonService KategoriService;
         public JsonService PodcastService;
         public RSSReader Reader;
-        public List<Avsnitt> allaAvsnitt = new List<Avsnitt>();
+        //public List<Avsnitt> allaAvsnitt = new List<Avsnitt>();
 
 
         public ListMaker()
         {
             KategoriService = new JsonService();
             PodcastService = new JsonService();
-        
+
             //CreatePodcast();
-            //CreateAvsnitt();
+            
         }
 
         public List<Kategori> GetKategorier()
@@ -40,14 +40,14 @@ namespace logic
         {
             var list = PodcastService.GetList("podcast.json");
             var podcastList = new List<Podcast>();
-       
+
 
             foreach (Podcast p in list)
             {
                 var url = p.URL;
                 var frekvens = p.Frekvensen;
                 var kategori = p.Kategorin;
-               
+
                 var pod = new Podcast(url, frekvens, kategori);
                 podcastList.Add(pod);
             }
@@ -66,24 +66,15 @@ namespace logic
 
         public void AddPodcast(Podcast podcast)
         {
-            
+
             PodcastService.AddItemToList(podcast, "podcast.json");
         }
 
         public void RemovePodcast(String podcast)
-        {
-            var list = PodcastService.GetList("podcast.json");
+        {         
 
-            foreach (Podcast p in list)
-            {
-                var namn = p.Namn;
+            PodcastService.RemoveItemFromList(podcast, "kategori.json");
 
-                if (podcast.Equals(namn))
-                {
-                    PodcastService.RemoveItemFromList(p, "podcast.json");
-                }
-                
-            }
         }
 
         //public void CreatePodcast()
@@ -97,7 +88,7 @@ namespace logic
         //    allaPodcasts.Add(thePodcast);
         //}
 
-        //public void CreateAvsnitt()
+        //public void CreateAvsnitt(String podcast)
         //{
         //    var avsnitt = Reader.ListOfAvsnitt;
 
@@ -110,5 +101,7 @@ namespace logic
         //        allaAvsnitt.Add(ettAvsnitt);
         //    }
         //}
+
+        
     }
 }
