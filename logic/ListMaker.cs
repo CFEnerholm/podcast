@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
@@ -11,15 +12,15 @@ namespace logic
         public JsonService PodcastService;
         public RSSReader Reader;
         public List<Avsnitt> allaAvsnitt = new List<Avsnitt>();
-        public List<Podcast> allaPodcasts = new List<Podcast>();
+
 
         public ListMaker()
         {
             KategoriService = new JsonService();
             PodcastService = new JsonService();
-            Reader = new RSSReader();
+        
             //CreatePodcast();
-            CreateAvsnitt();
+            //CreateAvsnitt();
         }
 
         public List<Kategori> GetKategorier()
@@ -39,11 +40,15 @@ namespace logic
         {
             var list = PodcastService.GetList("podcast.json");
             var podcastList = new List<Podcast>();
+       
 
-            foreach (var p in list)
+            foreach (Podcast p in list)
             {
-                Kategori kategori = new Kategori("Gröt");
-                var pod = new Podcast("P3 Histöria", "blablabla", Frekvens.VarjeKvart, kategori);
+                var url = p.URL;
+                var frekvens = p.Frekvensen;
+                var kategori = p.Kategorin;
+               
+                var pod = new Podcast(url, frekvens, kategori);
                 podcastList.Add(pod);
             }
             return podcastList;
@@ -67,7 +72,18 @@ namespace logic
 
         public void RemovePodcast(String podcast)
         {
-            PodcastService.RemoveItemFromList(podcast, "podcast.json");
+            var list = PodcastService.GetList("podcast.json");
+
+            foreach (Podcast p in list)
+            {
+                var namn = p.Namn;
+
+                if (podcast.Equals(namn))
+                {
+                    PodcastService.RemoveItemFromList(p, "podcast.json");
+                }
+                
+            }
         }
 
         //public void CreatePodcast()
@@ -81,18 +97,18 @@ namespace logic
         //    allaPodcasts.Add(thePodcast);
         //}
 
-        public void CreateAvsnitt()
-        {
-            var avsnitt = Reader.ListOfAvsnitt;
+        //public void CreateAvsnitt()
+        //{
+        //    var avsnitt = Reader.ListOfAvsnitt;
 
-            foreach (var a in avsnitt)
-            {
-                var title = a.ElementAt(0);
-                var beskrivning = a.ElementAt(1);
-                var ettAvsnitt = new Avsnitt(title, beskrivning);
+        //    foreach (var a in avsnitt)
+        //    {
+        //        var title = a.ElementAt(0);
+        //        var beskrivning = a.ElementAt(1);
+        //        var ettAvsnitt = new Avsnitt(title, beskrivning);
 
-                allaAvsnitt.Add(ettAvsnitt);
-            }
-        }
+        //        allaAvsnitt.Add(ettAvsnitt);
+        //    }
+        //}
     }
 }

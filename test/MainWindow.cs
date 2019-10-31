@@ -9,6 +9,7 @@ using System.ComponentModel;
 public partial class MainWindow : Gtk.Window
 {
     string gtkKategori = "";
+    string gtkPodcast = "";
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -125,6 +126,8 @@ public partial class MainWindow : Gtk.Window
     private void RemoveColumn(TreeView treeview)
     {
         treeview.RemoveColumn(treeview.GetColumn(0));
+        
+
     }
 
     private void RemoveComboBox(ComboBox comboBox)
@@ -180,7 +183,7 @@ public partial class MainWindow : Gtk.Window
         FillComboBoxKategorier();
     }
 
-    protected void SavePodFeed(object sender, EventArgs e)
+    protected void AddPodFeed(object sender, EventArgs e)
     {
         var listMaker = new ListMaker();
         var url = entryURL.Text;
@@ -198,11 +201,14 @@ public partial class MainWindow : Gtk.Window
             {
                 Kategori kategorin;
                 kategorin = k;
-                var newPodcast = new Podcast("Namnet", url, frekvensen, kategorin);
+                var newPodcast = new Podcast(url, frekvensen, kategorin);
                 listMaker.AddPodcast(newPodcast);
             }
         }
-        RemoveColumn(treeviewPodcast);
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         FillTreeviewPodcast();
 
     }
@@ -254,6 +260,36 @@ public partial class MainWindow : Gtk.Window
         textviewAvsnitt.Buffer.Text = output; 
 
       
+
+    }
+
+    protected void OnTreeviewPodcastRowActivated(object o, RowActivatedArgs args)
+    {
+        
+            var model = treeviewPodcast.Model;
+            TreeIter iter;
+            model.GetIter(out iter, args.Path);
+            object value = model.GetValue(iter, 1);
+            gtkPodcast = value.ToString();
+            entryURL.Text = gtkPodcast;
+
+        
+    }
+
+    protected void RemovePodcast(object sender, EventArgs e)
+    {
+
+        var listMaker = new ListMaker();
+        var podcast = entryURL.Text;
+        listMaker.RemovePodcast(podcast);
+        String clear = "http://";
+        entryURL.Text = clear;
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        FillTreeviewPodcast();
+
 
     }
 }                                              

@@ -30,6 +30,7 @@
                   <widget class="Gtk.TreeView" id="treeviewPodcast">
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
+                    <signal name="RowActivated" handler="OnTreeviewPodcastRowActivated" />
                   </widget>
                 </child>
               </widget>
@@ -176,7 +177,7 @@
                             <property name="Type">TextOnly</property>
                             <property name="Label" translatable="yes">Spara</property>
                             <property name="UseUnderline">True</property>
-                            <signal name="Clicked" handler="SavePodFeed" />
+                            <signal name="Clicked" handler="AddPodFeed" />
                           </widget>
                           <packing>
                             <property name="Position">0</property>
@@ -192,6 +193,7 @@
                             <property name="Type">TextOnly</property>
                             <property name="Label" translatable="yes">Ta Bort...</property>
                             <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="RemovePodcast" />
                           </widget>
                           <packing>
                             <property name="Position">1</property>

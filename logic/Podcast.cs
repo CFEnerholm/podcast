@@ -1,4 +1,5 @@
 ﻿using System;
+using Data;
 namespace logic
 {
     public class Podcast
@@ -8,9 +9,11 @@ namespace logic
         public Frekvens Frekvensen { get; set; }
         public Kategori Kategorin { get; set; }
 
-        public Podcast(string titel, string url, Frekvens frekvens, Kategori kategori)
-        {           
-            Namn = titel;
+        public Podcast(string url, Frekvens frekvens, Kategori kategori)
+        {
+            var reader = new RSSReader(url);
+            var namn = reader.GetPodCastName();
+            Namn = namn;
             URL = url;
             Frekvensen = frekvens;
             Kategorin = kategori;

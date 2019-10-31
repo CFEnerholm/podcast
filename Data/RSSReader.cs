@@ -9,18 +9,16 @@ namespace Data
 {
     public class RSSReader
     {
-        public List<String> ListOfPodcast { set; get; } 
         public List<List<String>> ListOfAvsnitt { set; get; }
         public SyndicationFeed TheFeed { set; get; }
         public String URL;
 
-        public RSSReader()
+        public RSSReader(string url)
         {
-            URL = "https://api.sr.se/api/rss/pod/23791";
-            ListOfPodcast = new List<String>();
+            URL = url;
+          
             ListOfAvsnitt = new List<List<String>>();
             GetFeed();
-            GetPodcastInfo();
             GetAvsnittsInfo();
         }
 
@@ -32,15 +30,11 @@ namespace Data
             
         }
 
-        public void GetPodcastInfo()
+        public String GetPodCastName()
         {
             var title = TheFeed.Title.Text;
-            var frekvens = "VarjeKvart";
-            var kategori = "Historia";
-            ListOfPodcast.Add(title);
-            ListOfPodcast.Add(URL);
-            ListOfPodcast.Add(frekvens);
-            ListOfPodcast.Add(kategori);
+
+            return title;
         }
 
         public void GetAvsnittsInfo()
