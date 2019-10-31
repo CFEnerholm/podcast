@@ -53,8 +53,6 @@ public partial class MainWindow : Gtk.Window
     private void FillTreeviewPodcast()
     {
         var lista = ListMaker.PodcastList;
-        var i = 0;
-
 
         Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
         avsnittColumn.Title = "Avsnitt:";
@@ -92,8 +90,8 @@ public partial class MainWindow : Gtk.Window
             var namn = p.Namn;
             var frekvens = p.Frekvensen.ToString();
             var kategori = p.Kategorin.Namn;
-            i++;
-            podcastListStore.AppendValues("20", namn, frekvens, kategori);
+            var avsnitt = p.AvsnittsLista.Count.ToString();
+            podcastListStore.AppendValues(avsnitt, namn, frekvens, kategori);
         }
 
 
@@ -103,7 +101,6 @@ public partial class MainWindow : Gtk.Window
     private void FillTreeviewKategori()
     {
         var lista = ListMaker.KategoriList;
-        var i = 0;
 
         Gtk.TreeViewColumn kategoriColumn = new Gtk.TreeViewColumn();
         kategoriColumn.Title = "Kategorier:";
@@ -116,7 +113,6 @@ public partial class MainWindow : Gtk.Window
         foreach (var k in lista)
         {
             kategoriListStore.AppendValues(k.Namn);
-            i++;
         }
         treeviewKategorier.Model = kategoriListStore;
     }
@@ -180,7 +176,6 @@ public partial class MainWindow : Gtk.Window
 
     protected void AddPodFeed(object sender, EventArgs e)
     {
-        var listMaker = new ListMaker();
         var url = entryURL.Text;
         var frekvens = comboboxFrekvens.ActiveText;
         Frekvens frekvensen = (Frekvens)Enum.Parse(typeof(Frekvens), frekvens);
@@ -194,7 +189,7 @@ public partial class MainWindow : Gtk.Window
                 Kategori kategorin;
                 kategorin = k;
                 var newPodcast = new Podcast(url, frekvensen, kategorin);
-                listMaker.AddPodcast(newPodcast);
+                ListMaker.AddPodcast(newPodcast);
             }
         }
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
@@ -202,7 +197,6 @@ public partial class MainWindow : Gtk.Window
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         FillTreeviewPodcast();
-
     }
 
     protected void RemoveKategori(object sender, EventArgs e)
