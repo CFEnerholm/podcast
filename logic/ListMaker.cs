@@ -14,6 +14,7 @@ namespace logic
         public RSSReader Reader;
         public List<Podcast> PodcastList;
         public List<Kategori> KategoriList;
+        public int I;
 
         public ListMaker()
         {
@@ -23,6 +24,8 @@ namespace logic
             KategoriList = new List<Kategori>();
             GetKategorier();
             GetPodcasts();
+            I = 0;
+
         }
 
         public void GetKategorier()
@@ -39,7 +42,7 @@ namespace logic
         public void GetPodcasts()
         {
             var list = PodcastService.GetList("podcast.json");
-        
+
             foreach (Podcast p in list)
             {
                 var url = p.URL;
@@ -54,7 +57,7 @@ namespace logic
         public void AddKategori(Kategori kategori)
         {
             KategoriService.AddItemToList(kategori.Namn, "kategori.json");
-            KategoriList.Clear();          
+            KategoriList.Clear();
             GetKategorier();
         }
 
@@ -73,10 +76,73 @@ namespace logic
         }
 
         public void RemovePodcast(String podcast)
-        {         
+        {
             PodcastService.RemoveItemFromList(podcast, "kategori.json");
             PodcastList.Clear();
             GetPodcasts();
-        }  
+        }
+
+        public void UpdateAvsnittInPodcast()
+        {
+            var kvartLista = PodcastList
+                        .Where(p => p.Frekvensen.Equals(0));
+            var halvtimmesLista = PodcastList
+                        .Where(p => p.Frekvensen.Equals(1));
+            var timmesLista = PodcastList
+                        .Where(p => p.Frekvensen.Equals(2));
+
+            if (I == 0)
+            {
+                foreach (var p in kvartLista)
+                {
+                    p.UpdateAvsnittsList();
+                }
+                I++;
+            }
+
+            else if (I == 1)
+            {
+                foreach (var p in kvartLista)
+                {
+                    p.UpdateAvsnittsList();
+                }
+
+                foreach (var p in halvtimmesLista)
+                {
+                    p.UpdateAvsnittsList();
+                }
+
+                I++;
+            }
+
+            else if (I == 2)
+            {
+                foreach (var p in kvartLista)
+                {
+                    p.UpdateAvsnittsList();
+                }
+                I++;
+            }
+
+            else if (I == 3)
+            {
+                foreach(var p in kvartLista)
+                {
+                    p.UpdateAvsnittsList();
+                }
+
+                foreach (var p in halvtimmesLista)
+                {
+                    p.UpdateAvsnittsList();
+                }
+
+                foreach(var p in timmesLista)
+                {
+                    p.UpdateAvsnittsList();
+                }
+                I = 0;
+            }
+        }
+
     }
 }

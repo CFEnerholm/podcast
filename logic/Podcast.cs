@@ -11,12 +11,13 @@ namespace logic
         public Frekvens Frekvensen { get; set; }
         public Kategori Kategorin { get; set; }     
         public List<Avsnitt> AvsnittsLista { get; set; }
+        public RSSReader Reader { get; set; }
 
         public Podcast(string url, Frekvens frekvens, Kategori kategori)
         {
-            var reader = new RSSReader(url);
-            var namn = reader.GetPodCastName();
-            var list = reader.GetAvsnittsInfo();
+            Reader = new RSSReader(url);
+            var namn = Reader.GetPodCastName();
+            var list = Reader.GetAvsnittsInfo();
 
             Namn = namn;
             URL = url;
@@ -30,7 +31,29 @@ namespace logic
                 var beskrivning = a.ElementAt(1);               
                 Avsnitt avsnitt = new Avsnitt(titel, beskrivning);
                 AvsnittsLista.Add(avsnitt);
+            }
+        }
 
+        public void UpdateAvsnittsList()
+        {
+            var list = Reader.GetAvsnittsInfo();
+            var i = 1;
+            int avsnittsListLenght = AvsnittsLista.Count;
+
+            foreach (var a in list)
+            {
+                if (i < avsnittsListLenght)
+                {
+
+                }
+                else
+                {
+                    var titel = a.ElementAt(0);
+                    var beskrivning = a.ElementAt(1);
+                    Avsnitt avsnitt = new Avsnitt(titel, beskrivning);
+                    AvsnittsLista.Add(avsnitt);
+                }
+                i++;
             }
         }
     }

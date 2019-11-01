@@ -5,12 +5,14 @@ using Gtk;
 using System.Linq;
 using logic;
 using System.ComponentModel;
+using System.Timers;
 
 public partial class MainWindow : Gtk.Window
 {
     ListMaker ListMaker;
     string gtkKategori = "";
     string gtkPodcast = "";
+    private Boolean test;
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -20,6 +22,8 @@ public partial class MainWindow : Gtk.Window
         FillComboBoxFrekvens();
         FillTreeviewKategori();
         FillTreeviewPodcast();
+        Timer();
+        test = true;
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -52,6 +56,7 @@ public partial class MainWindow : Gtk.Window
 
     private void FillTreeviewPodcast()
     {
+
         var lista = ListMaker.PodcastList;
 
         Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
@@ -282,6 +287,24 @@ public partial class MainWindow : Gtk.Window
         ListMaker.RemovePodcast(podcast);
         String clear = "http://";
         entryURL.Text = clear;
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        FillTreeviewPodcast();
+    }
+
+    public void Timer()
+    {
+        Timer timer = new Timer(TimeSpan.FromMinutes(15).TotalMilliseconds);
+        timer.AutoReset = true;
+        timer.Elapsed += new ElapsedEventHandler(UpdatePodcasts);
+        timer.Start();
+    }
+
+    private void UpdatePodcasts(object sender, ElapsedEventArgs e)
+    {
+        ListMaker.UpdateAvsnittInPodcast();
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
