@@ -126,7 +126,7 @@ namespace logic
 
             else if (I == 3)
             {
-                foreach(var p in kvartLista)
+                foreach (var p in kvartLista)
                 {
                     p.UpdateAvsnittsList();
                 }
@@ -136,7 +136,7 @@ namespace logic
                     p.UpdateAvsnittsList();
                 }
 
-                foreach(var p in timmesLista)
+                foreach (var p in timmesLista)
                 {
                     p.UpdateAvsnittsList();
                 }

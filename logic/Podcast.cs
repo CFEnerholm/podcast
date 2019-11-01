@@ -11,11 +11,10 @@ namespace logic
         public Frekvens Frekvensen { get; set; }
         public Kategori Kategorin { get; set; }     
         public List<Avsnitt> AvsnittsLista { get; set; }
-        public RSSReader Reader { get; set; }
-
+        
         public Podcast(string url, Frekvens frekvens, Kategori kategori)
         {
-            Reader = new RSSReader(url);
+            RSSReader Reader = new RSSReader(url);
             var namn = Reader.GetPodCastName();
             var list = Reader.GetAvsnittsInfo();
 
@@ -36,6 +35,7 @@ namespace logic
 
         public void UpdateAvsnittsList()
         {
+            RSSReader Reader = new RSSReader(URL);
             var list = Reader.GetAvsnittsInfo();
             var i = 1;
             int avsnittsListLenght = AvsnittsLista.Count;
