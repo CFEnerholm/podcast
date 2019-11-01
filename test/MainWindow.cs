@@ -283,7 +283,7 @@ public partial class MainWindow : Gtk.Window
 
     protected void RemovePodcast(object sender, EventArgs e)
     {
-        var podcast = entryURL.Text;
+        String podcast = gtkPodcast;
         ListMaker.RemovePodcast(podcast);
         String clear = "http://";
         entryURL.Text = clear;

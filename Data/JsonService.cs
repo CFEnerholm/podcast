@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Data
 {
@@ -50,5 +51,15 @@ namespace Data
             lista.Remove(item);
             serializerService.Serialize(jsonFilename, lista);
         }
+
+        public void SaveList(List<Object> lista, string filename)
+        {
+            var serializerService = new SerializerService();
+            serializerService.Serialize(filename, lista);
+
+
+
+        }
+
     }
 }

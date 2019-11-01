@@ -14,6 +14,7 @@ namespace logic
         public RSSReader Reader;
         public List<Podcast> PodcastList;
         public List<Kategori> KategoriList;
+        public SerializerService Service;
         public int I;
 
         public ListMaker()
@@ -22,6 +23,7 @@ namespace logic
             PodcastService = new JsonService();
             PodcastList = new List<Podcast>();
             KategoriList = new List<Kategori>();
+            Service = new SerializerService();
             GetKategorier();
             GetPodcasts();
             I = 0;
@@ -56,21 +58,27 @@ namespace logic
 
         public void ChangePodcast(String Podcast, Frekvens Frekvens, Kategori Kategori)
         {
+            var list = new List<Object>();
             var lista = PodcastList;
             var namn = Podcast;
             Frekvens frekvens = Frekvens;
             Kategori kategori = Kategori;
 
-            foreach(Podcast p in lista)
+            foreach (Podcast p in lista)
             {
                 if (p.Namn.Equals(namn))
                 {
                     p.Frekvensen = frekvens;
                     p.Kategorin = kategori;
+                    
+
                 }
+                list.Add(p);
             }
 
+            PodcastService.SaveList(list, "podcast.json");
 
+            
         }
 
         public void AddKategori(Kategori kategori)
@@ -94,9 +102,18 @@ namespace logic
             GetPodcasts();
         }
 
-        public void RemovePodcast(String podcast)
+        public void RemovePodcast(String Podcast)
         {
-            PodcastService.RemoveItemFromList(podcast, "kategori.json");
+            String podcast = Podcast;
+            var lista = PodcastList;
+            foreach (Podcast p in lista)
+            {
+                if (p.Namn.Equals(podcast))
+                {
+                    lista.Remove(p);
+                }
+            }
+
             PodcastList.Clear();
             GetPodcasts();
         }
