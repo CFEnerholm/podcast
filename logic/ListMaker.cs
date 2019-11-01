@@ -54,6 +54,25 @@ namespace logic
             }
         }
 
+        public void ChangePodcast(String Podcast, Frekvens Frekvens, Kategori Kategori)
+        {
+            var lista = PodcastList;
+            var namn = Podcast;
+            Frekvens frekvens = Frekvens;
+            Kategori kategori = Kategori;
+
+            foreach(Podcast p in lista)
+            {
+                if (p.Namn.Equals(namn))
+                {
+                    p.Frekvensen = frekvens;
+                    p.Kategorin = kategori;
+                }
+            }
+
+
+        }
+
         public void AddKategori(Kategori kategori)
         {
             KategoriService.AddItemToList(kategori.Namn, "kategori.json");

@@ -160,10 +160,24 @@
                         <property name="MemberName" />
                         <property name="WidthRequest">100</property>
                         <property name="HasWindow">False</property>
+                        <child>
+                          <widget class="Gtk.Button" id="button9">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="Type">TextOnly</property>
+                            <property name="Label" translatable="yes">Ändra</property>
+                            <property name="UseUnderline">True</property>
+                            <signal name="Clicked" handler="ChangePodcast" />
+                          </widget>
+                          <packing>
+                            <property name="X">302</property>
+                            <property name="Y">4</property>
+                          </packing>
+                        </child>
                       </widget>
                       <packing>
                         <property name="Position">0</property>
-                        <property name="AutoSize">True</property>
+                        <property name="AutoSize">False</property>
                       </packing>
                     </child>
                     <child>

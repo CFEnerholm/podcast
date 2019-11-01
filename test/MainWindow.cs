@@ -311,5 +311,28 @@ public partial class MainWindow : Gtk.Window
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         FillTreeviewPodcast();
     }
+
+    protected void ChangePodcast(object sender, EventArgs e)
+    {
+        var frekvens = comboboxFrekvens.ActiveText;
+        Frekvens frekvensen = (Frekvens)Enum.Parse(typeof(Frekvens), frekvens);
+        var kategori = comboboxKategori.ActiveText;
+        var list = ListMaker.KategoriList;
+
+        foreach (Kategori k in list)
+        {
+            if (k.Namn.Equals(kategori))
+            {
+                Kategori kategorin;
+                kategorin = k;
+                ListMaker.ChangePodcast(gtkPodcast, frekvensen, kategorin);
+            }
+        }
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        FillTreeviewPodcast();
+    }
 }
 
