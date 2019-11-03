@@ -389,5 +389,19 @@ public partial class MainWindow : Gtk.Window
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         FillTreeviewPodcast(kategori);
     }
+
+    protected void ChangeCategory(object sender, EventArgs e)
+    {
+        string kategori = gtkKategori;
+        string nyKategori = entryKategori.Text;
+        ListMaker.ChangeCategory(kategori, nyKategori);
+        String clear = "";
+        entryKategori.Text = clear;
+        RemoveColumn(treeviewKategorier);
+        FillTreeviewKategori();
+        RemoveComboBox(comboboxKategori);
+        FillComboBoxKategorier();
+    }
 }
+
 

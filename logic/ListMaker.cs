@@ -72,7 +72,7 @@ namespace logic
                     p.Frekvensen = frekvens;
                     p.Kategorin = kategori;
                     p.URL = url;
-                    
+
 
                 }
                 list.Add(p);
@@ -82,6 +82,28 @@ namespace logic
             PodcastList.Clear();
             GetPodcasts();
 
+
+        }
+
+        public void ChangeCategory(String Kategori, String NyKategori)
+        {
+            String kategori = Kategori;
+            String nyKategori = NyKategori;
+
+            var lista = KategoriList;
+            var list = new List<Object>();
+
+            foreach (Kategori k in lista)
+            {
+                if (k.Namn.Equals(kategori))
+                {
+                    k.Namn = nyKategori;
+                }
+                list.Add(k.Namn);
+            }
+            KategoriService.SaveList(list, "kategori.json");
+            KategoriList.Clear();
+            GetKategorier();
 
         }
 
@@ -121,7 +143,7 @@ namespace logic
             PodcastList.Clear();
             GetPodcasts();
 
-           
+
         }
 
         public void UpdateAvsnittInPodcast()

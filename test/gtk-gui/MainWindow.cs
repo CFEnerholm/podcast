@@ -438,6 +438,7 @@ public partial class MainWindow
 		this.treeviewAvsnitt.RowActivated += new global::Gtk.RowActivatedHandler(this.ShowDiscription);
 		this.treeviewKategorier.RowActivated += new global::Gtk.RowActivatedHandler(this.OnTreeviewKategorierRowActivated);
 		this.showKategoriButton.Clicked += new global::System.EventHandler(this.ShowKategori);
+		this.rightChangeButton.Clicked += new global::System.EventHandler(this.ChangeCategory);
 		this.rightSaveButton.Clicked += new global::System.EventHandler(this.AddKategori);
 		this.rightRemoveButton.Clicked += new global::System.EventHandler(this.RemoveKategori);
 	}
