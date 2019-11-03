@@ -48,7 +48,7 @@
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Label" id="choseURLLabel">
+                      <widget class="Gtk.Label" id="URLLabel">
                         <property name="MemberName" />
                         <property name="WidthRequest">235</property>
                         <property name="Xalign">0</property>
@@ -161,7 +161,29 @@
                         <property name="WidthRequest">100</property>
                         <property name="HasWindow">False</property>
                         <child>
-                          <widget class="Gtk.Button" id="button9">
+                          <widget class="Gtk.Entry" id="entryNamn">
+                            <property name="MemberName" />
+                            <property name="CanFocus">True</property>
+                            <property name="IsEditable">True</property>
+                            <property name="InvisibleChar">●</property>
+                          </widget>
+                          <packing>
+                            <property name="X">5</property>
+                            <property name="Y">24</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Label" id="LabelNamn">
+                            <property name="MemberName" />
+                            <property name="LabelProp" translatable="yes">Namn</property>
+                          </widget>
+                          <packing>
+                            <property name="X">6</property>
+                            <property name="Y">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="Gtk.Button" id="ChangeButton">
                             <property name="MemberName" />
                             <property name="CanFocus">True</property>
                             <property name="Type">TextOnly</property>
@@ -170,8 +192,8 @@
                             <signal name="Clicked" handler="ChangePodcast" />
                           </widget>
                           <packing>
-                            <property name="X">302</property>
-                            <property name="Y">4</property>
+                            <property name="X">326</property>
+                            <property name="Y">8</property>
                           </packing>
                         </child>
                       </widget>

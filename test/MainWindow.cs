@@ -56,6 +56,9 @@ public partial class MainWindow : Gtk.Window
 
     private void FillTreeviewPodcast()
     {
+        String clear = "";
+        entryNamn.Text = clear;
+        treeviewAvsnitt.RemoveColumn(treeviewAvsnitt.GetColumn(0));
 
         var lista = ListMaker.PodcastList;
 
@@ -138,7 +141,7 @@ public partial class MainWindow : Gtk.Window
 
     private void FillTreeviewAvsnitt()
     {
-        var podcast = entryURL.Text;
+        var podcast = gtkPodcast;
         var podcastList = ListMaker.PodcastList;
 
         Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
@@ -275,7 +278,7 @@ public partial class MainWindow : Gtk.Window
         model.GetIter(out iter, args.Path);
         object value = model.GetValue(iter, 1);
         gtkPodcast = value.ToString();
-        entryURL.Text = gtkPodcast;
+        entryNamn.Text = gtkPodcast;
 
         RemoveColumn(treeviewAvsnitt);
         FillTreeviewAvsnitt();
@@ -285,7 +288,7 @@ public partial class MainWindow : Gtk.Window
     {
         ListMaker.RemovePodcast(gtkPodcast);
         String clear = "http://";
-        entryURL.Text = clear;
+        entryNamn.Text = clear;
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
@@ -316,6 +319,7 @@ public partial class MainWindow : Gtk.Window
         var frekvens = comboboxFrekvens.ActiveText;
         Frekvens frekvensen = (Frekvens)Enum.Parse(typeof(Frekvens), frekvens);
         var kategori = comboboxKategori.ActiveText;
+        var url = entryURL.Text;
         var list = ListMaker.KategoriList;
 
         foreach (Kategori k in list)
@@ -324,9 +328,11 @@ public partial class MainWindow : Gtk.Window
             {
                 Kategori kategorin;
                 kategorin = k;
-                ListMaker.ChangePodcast(gtkPodcast, frekvensen, kategorin);
+                ListMaker.ChangePodcast(gtkPodcast, frekvensen, kategorin, url);
             }
         }
+        String clear = "";
+        entryNamn.Text = clear;
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));

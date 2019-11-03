@@ -56,11 +56,12 @@ namespace logic
             }
         }
 
-        public void ChangePodcast(String Podcast, Frekvens Frekvens, Kategori Kategori)
+        public void ChangePodcast(String Podcast, Frekvens Frekvens, Kategori Kategori, String Url)
         {
             var list = new List<Object>();
             var lista = PodcastList;
             var namn = Podcast;
+            var url = Url;
             Frekvens frekvens = Frekvens;
             Kategori kategori = Kategori;
 
@@ -70,6 +71,7 @@ namespace logic
                 {
                     p.Frekvensen = frekvens;
                     p.Kategorin = kategori;
+                    p.URL = url;
                     
 
                 }
@@ -77,8 +79,10 @@ namespace logic
             }
 
             PodcastService.SaveList(list, "podcast.json");
+            PodcastList.Clear();
+            GetPodcasts();
 
-            
+
         }
 
         public void AddKategori(Kategori kategori)
