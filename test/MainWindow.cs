@@ -106,6 +106,65 @@ public partial class MainWindow : Gtk.Window
         treeviewPodcast.Model = podcastListStore;
     }
 
+    private void FillTreeviewPodcast(String kategorin)
+    {
+        if (kategorin.Equals(""))
+        {
+            FillTreeviewPodcast();
+        }
+        else { 
+        String clear = "";
+        entryNamn.Text = clear;
+        treeviewAvsnitt.RemoveColumn(treeviewAvsnitt.GetColumn(0));
+
+        var lista = ListMaker.PodcastList;
+
+        Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
+        avsnittColumn.Title = "Avsnitt:";
+        Gtk.TreeViewColumn namnColumn = new Gtk.TreeViewColumn();
+        namnColumn.Title = "Namn:";
+        Gtk.TreeViewColumn frekvensColumn = new Gtk.TreeViewColumn();
+        frekvensColumn.Title = "Frekvens:";
+        Gtk.TreeViewColumn kategoriColumn = new Gtk.TreeViewColumn();
+        kategoriColumn.Title = "Kategori:";
+
+        Gtk.CellRendererText avsnittNameCell = new Gtk.CellRendererText();
+        avsnittColumn.PackStart(avsnittNameCell, true);
+        Gtk.CellRendererText namnNameCell = new Gtk.CellRendererText();
+        namnColumn.PackStart(namnNameCell, true);
+        Gtk.CellRendererText frekvensNameCell = new Gtk.CellRendererText();
+        frekvensColumn.PackStart(frekvensNameCell, true);
+        Gtk.CellRendererText kategoriNameCell = new Gtk.CellRendererText();
+        kategoriColumn.PackStart(kategoriNameCell, true);
+
+        treeviewPodcast.AppendColumn(avsnittColumn);
+        treeviewPodcast.AppendColumn(namnColumn);
+        treeviewPodcast.AppendColumn(frekvensColumn);
+        treeviewPodcast.AppendColumn(kategoriColumn);
+
+        avsnittColumn.AddAttribute(avsnittNameCell, "text", 0);
+        namnColumn.AddAttribute(namnNameCell, "text", 1);
+        frekvensColumn.AddAttribute(frekvensNameCell, "text", 2);
+        kategoriColumn.AddAttribute(kategoriNameCell, "text", 3);
+
+        Gtk.ListStore podcastListStore = new ListStore(typeof(string), typeof(string), typeof(string), typeof(string));
+            foreach (var p in lista)
+            {
+                var kategori = p.Kategorin.Namn;
+
+                if (kategorin.Equals(kategori))
+                {
+                    var namn = p.Namn;
+                    var frekvens = p.Frekvensen.ToString();
+                    var avsnitt = p.AvsnittsLista.Count.ToString();
+                    podcastListStore.AppendValues(avsnitt, namn, frekvens, kategori);
+                }
+            }
+            treeviewPodcast.Model = podcastListStore;
+        }
+    }
+
+
     private void FillTreeviewKategori()
     {
         var lista = ListMaker.KategoriList;
@@ -252,25 +311,6 @@ public partial class MainWindow : Gtk.Window
             }
         }  
 
-    //protected void ShowDiscription(object o, RowActivatedArgs args)
-    //{
-    //    var listMaker = new ListMaker();
-    //    var lista = listMaker.allaAvsnitt;
-    //    var model = treeviewAvsnitt.Model;
-
-    //    TreeIter iter;
-    //    model.GetIter(out iter, args.Path);
-    //    object value = model.GetValue(iter, 0);
-    //    var gtkAvsnitt = value.ToString();
-
-    //    var description = lista
-    //         .Where((p) => p.AvsnittsNamn.Equals(gtkAvsnitt))
-    //         .Select(p => p.Podcasten);
-
-    //    string output = description.ElementAt(0);
-    //    textviewAvsnitt.Buffer.Text = output;
-    //}
-
     protected void OnTreeviewPodcastRowActivated(object o, RowActivatedArgs args)
     {
         var model = treeviewPodcast.Model;
@@ -338,6 +378,16 @@ public partial class MainWindow : Gtk.Window
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
         FillTreeviewPodcast();
+    }
+
+    protected void ShowKategori(object sender, EventArgs e)
+    {
+        var kategori = entryKategori.Text;
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+        FillTreeviewPodcast(kategori);
     }
 }
 
