@@ -104,18 +104,20 @@ namespace logic
 
         public void RemovePodcast(String Podcast)
         {
-            String podcast = Podcast;
+            var podcast = Podcast;
             var lista = PodcastList;
-            foreach (Podcast p in lista)
-            {
-                if (p.Namn.Equals(podcast))
-                {
-                    lista.Remove(p);
-                }
-            }
 
+            lista.RemoveAll(x => x.Namn == podcast);
+
+            var list = new List<Object>();
+            list.AddRange(lista);
+
+
+            PodcastService.SaveList(list, "podcast.json");
             PodcastList.Clear();
             GetPodcasts();
+
+           
         }
 
         public void UpdateAvsnittInPodcast()

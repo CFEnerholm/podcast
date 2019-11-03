@@ -54,8 +54,12 @@ namespace Data
 
         public void SaveList(List<Object> lista, string filename)
         {
+            
             var serializerService = new SerializerService();
-            serializerService.Serialize(filename, lista);
+            var jsonFilename = filename;
+            var list = lista;
+            
+            serializerService.Serialize(jsonFilename, list);
 
 
 
