@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using Data;
 namespace logic
 {
@@ -31,9 +32,33 @@ namespace logic
                 Avsnitt avsnitt = new Avsnitt(titel, beskrivning);
                 AvsnittsLista.Add(avsnitt);
             }
+
+            switch (Frekvensen)
+            {
+                case Frekvens.VarjeKvart:
+                    Timer(15);
+                    break;
+                case Frekvens.VarjeHalvtimme:
+                    Timer(30);
+                    break;
+                case Frekvens.VarjeTimme:
+                    Timer(60);
+                    break;
+            }
         }
 
-        public void UpdateAvsnittsList()
+
+        public void Timer(int Time)
+        {
+            var time = Time;
+            Timer timer = new Timer(TimeSpan.FromMinutes(time).TotalMilliseconds);
+            timer.AutoReset = true;
+            timer.Elapsed += new ElapsedEventHandler(UpdateAvsnittsList);
+            timer.Start();
+        }
+
+
+        public void UpdateAvsnittsList(object sender, ElapsedEventArgs e)
         {
             RSSReader Reader = new RSSReader(URL);
             var list = Reader.GetAvsnittsInfo();

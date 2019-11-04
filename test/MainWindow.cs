@@ -287,7 +287,6 @@ public partial class MainWindow : Gtk.Window
         {
 
         }
-
     }
 
     protected void RemoveKategori(object sender, EventArgs e)
