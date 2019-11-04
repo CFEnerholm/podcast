@@ -1,5 +1,6 @@
 
 using System;
+using System.Timers;
 using Gtk;
 using logic;
 using Validation;
@@ -25,7 +26,7 @@ public partial class MainWindow : Gtk.Window
         FillComboBoxFrekvens();
         FillTreeviewKategori();
         FillTreeviewPodcast();
-
+        StartTimer();
 
     }
 
@@ -561,6 +562,29 @@ public partial class MainWindow : Gtk.Window
         catch (Exception a)
         {
             Console.WriteLine(a.Message);
+        }
+    }
+
+    public void StartTimer()
+    {
+        Timer timer = new Timer();
+        timer.Interval = 1000;
+        timer.Elapsed += TimerOnElapsed;
+        timer.Start();
+    }
+
+
+    public void TimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+    {
+        try
+        {
+            var url = entryURL.Text;
+            entryURL.Text = url + "X";
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
     }
 }

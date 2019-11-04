@@ -36,29 +36,28 @@ namespace logic
             switch (Frekvensen)
             {
                 case Frekvens.VarjeKvart:
-                    Timer(15);
+                    Timer(9000000);
                     break;
                 case Frekvens.VarjeHalvtimme:
-                    Timer(30);
+                    Timer(1800000);
                     break;
                 case Frekvens.VarjeTimme:
-                    Timer(60);
+                    Timer(3600000);
                     break;
             }
         }
 
 
-        public void Timer(int Time)
+        public void Timer(int Interval)
         {
-            var time = Time;
-            Timer timer = new Timer(TimeSpan.FromMinutes(time).TotalMilliseconds);
-            timer.AutoReset = true;
-            timer.Elapsed += new ElapsedEventHandler(UpdateAvsnittsList);
+            Timer timer = new Timer();
+            timer.Interval = Interval;
+            timer.Elapsed += TimerOnElapsed;
             timer.Start();
         }
 
 
-        public void UpdateAvsnittsList(object sender, ElapsedEventArgs e)
+        public void TimerOnElapsed(object sender, ElapsedEventArgs e)
         {
             RSSReader Reader = new RSSReader(URL);
             var list = Reader.GetAvsnittsInfo();
