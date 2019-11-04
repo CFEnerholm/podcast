@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="gtk-sharp">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\6.4.0\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -64,6 +67,10 @@
     <ProjectReference Include="..\logic\logic.csproj">
       <Project>{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}</Project>
       <Name>logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Validation\Validation.csproj">
+      <Project>{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}</Project>
+      <Name>Validation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

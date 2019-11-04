@@ -3,23 +3,31 @@ using System;
 using Gtk;
 using logic;
 using System.Timers;
+using Validation;
+
 public partial class MainWindow : Gtk.Window
 {
     ListMaker ListMaker;
+    PodcastValidation PodcastValidation;
+    CategoryValidation CategoryValidation;
     string gtkKategori = "";
     string gtkPodcast = "";
-    
+
+
+
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
         Build();
         ListMaker = new ListMaker();
+        PodcastValidation = new PodcastValidation();
+        CategoryValidation = new CategoryValidation();
         FillComboBoxKategorier();
         FillComboBoxFrekvens();
         FillTreeviewKategori();
         FillTreeviewPodcast();
         Timer();
-        
+
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -108,42 +116,43 @@ public partial class MainWindow : Gtk.Window
         {
             FillTreeviewPodcast();
         }
-        else { 
-        String clear = "";
-        entryNamn.Text = clear;
-        treeviewAvsnitt.RemoveColumn(treeviewAvsnitt.GetColumn(0));
+        else
+        {
+            String clear = "";
+            entryNamn.Text = clear;
+            treeviewAvsnitt.RemoveColumn(treeviewAvsnitt.GetColumn(0));
 
-        var lista = ListMaker.PodcastList;
+            var lista = ListMaker.PodcastList;
 
-        Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
-        avsnittColumn.Title = "Avsnitt:";
-        Gtk.TreeViewColumn namnColumn = new Gtk.TreeViewColumn();
-        namnColumn.Title = "Namn:";
-        Gtk.TreeViewColumn frekvensColumn = new Gtk.TreeViewColumn();
-        frekvensColumn.Title = "Frekvens:";
-        Gtk.TreeViewColumn kategoriColumn = new Gtk.TreeViewColumn();
-        kategoriColumn.Title = "Kategori:";
+            Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
+            avsnittColumn.Title = "Avsnitt:";
+            Gtk.TreeViewColumn namnColumn = new Gtk.TreeViewColumn();
+            namnColumn.Title = "Namn:";
+            Gtk.TreeViewColumn frekvensColumn = new Gtk.TreeViewColumn();
+            frekvensColumn.Title = "Frekvens:";
+            Gtk.TreeViewColumn kategoriColumn = new Gtk.TreeViewColumn();
+            kategoriColumn.Title = "Kategori:";
 
-        Gtk.CellRendererText avsnittNameCell = new Gtk.CellRendererText();
-        avsnittColumn.PackStart(avsnittNameCell, true);
-        Gtk.CellRendererText namnNameCell = new Gtk.CellRendererText();
-        namnColumn.PackStart(namnNameCell, true);
-        Gtk.CellRendererText frekvensNameCell = new Gtk.CellRendererText();
-        frekvensColumn.PackStart(frekvensNameCell, true);
-        Gtk.CellRendererText kategoriNameCell = new Gtk.CellRendererText();
-        kategoriColumn.PackStart(kategoriNameCell, true);
+            Gtk.CellRendererText avsnittNameCell = new Gtk.CellRendererText();
+            avsnittColumn.PackStart(avsnittNameCell, true);
+            Gtk.CellRendererText namnNameCell = new Gtk.CellRendererText();
+            namnColumn.PackStart(namnNameCell, true);
+            Gtk.CellRendererText frekvensNameCell = new Gtk.CellRendererText();
+            frekvensColumn.PackStart(frekvensNameCell, true);
+            Gtk.CellRendererText kategoriNameCell = new Gtk.CellRendererText();
+            kategoriColumn.PackStart(kategoriNameCell, true);
 
-        treeviewPodcast.AppendColumn(avsnittColumn);
-        treeviewPodcast.AppendColumn(namnColumn);
-        treeviewPodcast.AppendColumn(frekvensColumn);
-        treeviewPodcast.AppendColumn(kategoriColumn);
+            treeviewPodcast.AppendColumn(avsnittColumn);
+            treeviewPodcast.AppendColumn(namnColumn);
+            treeviewPodcast.AppendColumn(frekvensColumn);
+            treeviewPodcast.AppendColumn(kategoriColumn);
 
-        avsnittColumn.AddAttribute(avsnittNameCell, "text", 0);
-        namnColumn.AddAttribute(namnNameCell, "text", 1);
-        frekvensColumn.AddAttribute(frekvensNameCell, "text", 2);
-        kategoriColumn.AddAttribute(kategoriNameCell, "text", 3);
+            avsnittColumn.AddAttribute(avsnittNameCell, "text", 0);
+            namnColumn.AddAttribute(namnNameCell, "text", 1);
+            frekvensColumn.AddAttribute(frekvensNameCell, "text", 2);
+            kategoriColumn.AddAttribute(kategoriNameCell, "text", 3);
 
-        Gtk.ListStore podcastListStore = new ListStore(typeof(string), typeof(string), typeof(string), typeof(string));
+            Gtk.ListStore podcastListStore = new ListStore(typeof(string), typeof(string), typeof(string), typeof(string));
             foreach (var p in lista)
             {
                 var kategori = p.Kategorin.Namn;
@@ -211,12 +220,12 @@ public partial class MainWindow : Gtk.Window
         {
             if (podcast.Equals(p.Namn))
             {
-                
+
                 var avsnittsList = p.AvsnittsLista;
 
                 foreach (Avsnitt a in avsnittsList)
                 {
-                    
+
                     avsnittListStore.AppendValues(a.Namn);
                 }
             }
@@ -225,53 +234,77 @@ public partial class MainWindow : Gtk.Window
     }
 
     protected void AddKategori(object sender, EventArgs e)
-    {      
+    {
         var kategori = entryKategori.Text;
-        var newKategori = new Kategori(kategori);
-        ListMaker.AddKategori(newKategori);
-        String clear = "";
-        entryKategori.Text = clear;
-        RemoveColumn(treeviewKategorier);
-        FillTreeviewKategori();
-        RemoveComboBox(comboboxKategori);
-        FillComboBoxKategorier();
+
+        if (CategoryValidation.ValidateInput(kategori))
+        {
+
+            var newKategori = new Kategori(kategori);
+            ListMaker.AddKategori(newKategori);
+            String clear = "";
+            entryKategori.Text = clear;
+            RemoveColumn(treeviewKategorier);
+            FillTreeviewKategori();
+            RemoveComboBox(comboboxKategori);
+            FillComboBoxKategorier();
+        }
     }
 
     protected void AddPodFeed(object sender, EventArgs e)
     {
-        var url = entryURL.Text;
-        var frekvens = comboboxFrekvens.ActiveText;
-        Frekvens frekvensen = (Frekvens)Enum.Parse(typeof(Frekvens), frekvens);
-        var kategori = comboboxKategori.ActiveText;
-        var list = ListMaker.KategoriList;
-
-        foreach (Kategori k in list)
+        try
         {
-            if (k.Namn.Equals(kategori))
+            var url = entryURL.Text;
+            var frekvens = comboboxFrekvens.ActiveText;
+            var kategori = comboboxKategori.ActiveText;
+
+            if (PodcastValidation.ValidateInput(entryURL.Text) && PodcastValidation.IsComboBoxEmpty(frekvens, kategori))
             {
-                Kategori kategorin;
-                kategorin = k;
-                var newPodcast = new Podcast(url, frekvensen, kategorin);
-                ListMaker.AddPodcast(newPodcast);
+
+                Frekvens frekvensen = (Frekvens)Enum.Parse(typeof(Frekvens), frekvens);
+
+                var list = ListMaker.KategoriList;
+
+                foreach (Kategori k in list)
+                {
+                    if (k.Namn.Equals(kategori))
+                    {
+                        Kategori kategorin;
+                        kategorin = k;
+                        var newPodcast = new Podcast(url, frekvensen, kategorin);
+                        ListMaker.AddPodcast(newPodcast);
+                    }
+                }
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                FillTreeviewPodcast();
             }
         }
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        FillTreeviewPodcast();
+        catch (Exception)
+        {
+
+        }
+
     }
 
     protected void RemoveKategori(object sender, EventArgs e)
     {
         var kategori = entryKategori.Text;
-        ListMaker.RemoveKategori(kategori);
-        String clear = "";
-        entryKategori.Text = clear;
-        RemoveColumn(treeviewKategorier);
-        FillTreeviewKategori();
-        RemoveComboBox(comboboxKategori);
-        FillComboBoxKategorier();
+
+        if (CategoryValidation.ValidateInput(kategori))
+        {
+
+            ListMaker.RemoveKategori(kategori);
+            String clear = "";
+            entryKategori.Text = clear;
+            RemoveColumn(treeviewKategorier);
+            FillTreeviewKategori();
+            RemoveComboBox(comboboxKategori);
+            FillComboBoxKategorier();
+        }
     }
 
     protected void OnTreeviewKategorierRowActivated(object o, RowActivatedArgs args)
@@ -297,15 +330,15 @@ public partial class MainWindow : Gtk.Window
         {
             var avsnittsList = p.AvsnittsLista;
 
-                foreach (Avsnitt a in avsnittsList)
+            foreach (Avsnitt a in avsnittsList)
+            {
+                if (gtkAvsnitt.Equals(a.Namn))
                 {
-                    if(gtkAvsnitt.Equals(a.Namn))
-                    {
-                        textviewAvsnitt.Buffer.Text = a.Beskrivning;
-                    }                  
+                    textviewAvsnitt.Buffer.Text = a.Beskrivning;
                 }
             }
-        }  
+        }
+    }
 
     protected void OnTreeviewPodcastRowActivated(object o, RowActivatedArgs args)
     {
@@ -322,14 +355,25 @@ public partial class MainWindow : Gtk.Window
 
     protected void RemovePodcast(object sender, EventArgs e)
     {
-        ListMaker.RemovePodcast(gtkPodcast);
-        String clear = "http://";
-        entryNamn.Text = clear;
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        FillTreeviewPodcast();
+        try
+        {
+
+            if (PodcastValidation.IsInputEmpty(gtkPodcast))
+            {
+                ListMaker.RemovePodcast(gtkPodcast);
+                String clear = "http://";
+                entryNamn.Text = clear;
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                FillTreeviewPodcast();
+            }
+        }
+        catch (Exception)
+        {
+
+        }
     }
 
     public void Timer()
@@ -352,51 +396,75 @@ public partial class MainWindow : Gtk.Window
 
     protected void ChangePodcast(object sender, EventArgs e)
     {
-        var frekvens = comboboxFrekvens.ActiveText;
-        Frekvens frekvensen = (Frekvens)Enum.Parse(typeof(Frekvens), frekvens);
-        var kategori = comboboxKategori.ActiveText;
-        var url = entryURL.Text;
-        var list = ListMaker.KategoriList;
-
-        foreach (Kategori k in list)
+        try
         {
-            if (k.Namn.Equals(kategori))
+            var url = entryURL.Text;
+            var frekvens = comboboxFrekvens.ActiveText;
+            var kategori = comboboxKategori.ActiveText;
+
+            if (PodcastValidation.IsInputEmpty(gtkPodcast) && PodcastValidation.ValidateInput(url) && PodcastValidation.IsComboBoxEmpty(frekvens, kategori))
             {
-                Kategori kategorin;
-                kategorin = k;
-                ListMaker.ChangePodcast(gtkPodcast, frekvensen, kategorin, url);
+
+
+                Frekvens frekvensen = (Frekvens)Enum.Parse(typeof(Frekvens), frekvens);
+
+                var list = ListMaker.KategoriList;
+
+                foreach (Kategori k in list)
+                {
+                    if (k.Namn.Equals(kategori))
+                    {
+                        Kategori kategorin;
+                        kategorin = k;
+                        ListMaker.ChangePodcast(gtkPodcast, frekvensen, kategorin, url);
+                    }
+                }
+                String clear = "";
+                entryNamn.Text = clear;
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+                FillTreeviewPodcast();
             }
         }
-        String clear = "";
-        entryNamn.Text = clear;
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        FillTreeviewPodcast();
+        catch (Exception)
+        {
+
+        }
     }
 
     protected void ShowKategori(object sender, EventArgs e)
     {
         var kategori = entryKategori.Text;
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        FillTreeviewPodcast(kategori);
+
+        if (CategoryValidation.ValidateInput(kategori))
+        {
+
+            treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+            treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+            treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+            treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
+            FillTreeviewPodcast(kategori);
+        }
     }
 
     protected void ChangeCategory(object sender, EventArgs e)
     {
-        string kategori = gtkKategori;
-        string nyKategori = entryKategori.Text;
-        ListMaker.ChangeCategory(kategori, nyKategori);
-        String clear = "";
-        entryKategori.Text = clear;
-        RemoveColumn(treeviewKategorier);
-        FillTreeviewKategori();
-        RemoveComboBox(comboboxKategori);
-        FillComboBoxKategorier();
+        var kategori = entryKategori.Text;
+
+        if (CategoryValidation.ValidateInput(kategori))
+        {
+
+            string nyKategori = entryKategori.Text;
+            ListMaker.ChangeCategory(kategori, nyKategori);
+            String clear = "";
+            entryKategori.Text = clear;
+            RemoveColumn(treeviewKategorier);
+            FillTreeviewKategori();
+            RemoveComboBox(comboboxKategori);
+            FillComboBoxKategorier();
+        }
     }
 }
 

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logic", "logic\logic.csproj", "{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation", "Validation\Validation.csproj", "{96571A7D-416A-4FA3-964C-612191B4B4CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation", "Validation\Validation.csproj", "{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,13 +41,13 @@ Global
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Debug|x86.Build.0 = Debug|Any CPU
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Release|x86.Build.0 = Release|Any CPU
-		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Debug|anycpu.ActiveCfg = Debug|anycpu
-		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Debug|anycpu.Build.0 = Debug|anycpu
-		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Release|anycpu.ActiveCfg = Release|anycpu
-		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Release|anycpu.Build.0 = Release|anycpu
-		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Debug|x86.ActiveCfg = Debug|anycpu
-		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Debug|x86.Build.0 = Debug|anycpu
-		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Release|x86.ActiveCfg = Release|anycpu
-		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Release|x86.Build.0 = Release|anycpu
+		{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}.Release|anycpu.Build.0 = Release|Any CPU
+		{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}.Debug|x86.Build.0 = Debug|Any CPU
+		{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}.Release|x86.ActiveCfg = Release|Any CPU
+		{52929D7E-94A8-4D1A-ADDF-4CCA335EE277}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
