@@ -40,5 +40,14 @@
       <Name>GUI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ValidationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="gtk-sharp">
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\6.4.0\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
