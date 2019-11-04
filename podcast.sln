@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logic", "logic\logic.csproj", "{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation", "Validation\Validation.csproj", "{B025DD09-722C-41B1-A741-3D73C9D1F50D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation", "Validation\Validation.csproj", "{96571A7D-416A-4FA3-964C-612191B4B4CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,13 +41,13 @@ Global
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Debug|x86.Build.0 = Debug|Any CPU
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA75D430-476B-47D6-81FB-57A1CE6FCEBC}.Release|x86.Build.0 = Release|Any CPU
-		{B025DD09-722C-41B1-A741-3D73C9D1F50D}.Debug|anycpu.ActiveCfg = Debug|anycpu
-		{B025DD09-722C-41B1-A741-3D73C9D1F50D}.Debug|anycpu.Build.0 = Debug|anycpu
-		{B025DD09-722C-41B1-A741-3D73C9D1F50D}.Release|anycpu.ActiveCfg = Release|anycpu
-		{B025DD09-722C-41B1-A741-3D73C9D1F50D}.Release|anycpu.Build.0 = Release|anycpu
-		{B025DD09-722C-41B1-A741-3D73C9D1F50D}.Debug|x86.ActiveCfg = Debug|anycpu
-		{B025DD09-722C-41B1-A741-3D73C9D1F50D}.Debug|x86.Build.0 = Debug|anycpu
-		{B025DD09-722C-41B1-A741-3D73C9D1F50D}.Release|x86.ActiveCfg = Release|anycpu
-		{B025DD09-722C-41B1-A741-3D73C9D1F50D}.Release|x86.Build.0 = Release|anycpu
+		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Debug|anycpu.Build.0 = Debug|anycpu
+		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Release|anycpu.ActiveCfg = Release|anycpu
+		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Release|anycpu.Build.0 = Release|anycpu
+		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Debug|x86.ActiveCfg = Debug|anycpu
+		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Debug|x86.Build.0 = Debug|anycpu
+		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Release|x86.ActiveCfg = Release|anycpu
+		{96571A7D-416A-4FA3-964C-612191B4B4CC}.Release|x86.Build.0 = Release|anycpu
 	EndGlobalSection
 EndGlobal
