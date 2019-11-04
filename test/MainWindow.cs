@@ -2,7 +2,6 @@
 using System;
 using Gtk;
 using logic;
-using System.Timers;
 using Validation;
 
 public partial class MainWindow : Gtk.Window
