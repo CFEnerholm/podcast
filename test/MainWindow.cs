@@ -26,7 +26,7 @@ public partial class MainWindow : Gtk.Window
         FillComboBoxFrekvens();
         FillTreeviewKategori();
         FillTreeviewPodcast();
-        Timer();
+
 
     }
 
@@ -376,24 +376,6 @@ public partial class MainWindow : Gtk.Window
         }
     }
 
-    public void Timer()
-    {
-        Timer timer = new Timer(TimeSpan.FromMinutes(15).TotalMilliseconds);
-        timer.AutoReset = true;
-        timer.Elapsed += new ElapsedEventHandler(UpdatePodcasts);
-        timer.Start();
-    }
-
-    private void UpdatePodcasts(object sender, ElapsedEventArgs e)
-    {
-        ListMaker.UpdateAvsnittInPodcast();
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        treeviewPodcast.RemoveColumn(treeviewPodcast.GetColumn(0));
-        FillTreeviewPodcast();
-    }
-
     protected void ChangePodcast(object sender, EventArgs e)
     {
         try
@@ -465,6 +447,25 @@ public partial class MainWindow : Gtk.Window
             RemoveComboBox(comboboxKategori);
             FillComboBoxKategorier();
         }
+    }
+
+    protected async void ShowAllCategorys(object sender, EventArgs e)
+    {
+        var lista = await ListMaker.GetAllKategorier();
+
+        Gtk.TreeViewColumn kategoriColumn = new Gtk.TreeViewColumn();
+        kategoriColumn.Title = "Kategorier:";
+        Gtk.CellRendererText kategoriNameCell = new Gtk.CellRendererText();
+        kategoriColumn.PackStart(kategoriNameCell, true);
+        treeviewKategorier.AppendColumn(kategoriColumn);
+        kategoriColumn.AddAttribute(kategoriNameCell, "text", 0);
+        Gtk.ListStore kategoriListStore = new Gtk.ListStore(typeof(string));
+
+        foreach (var k in lista)
+        {
+            kategoriListStore.AppendValues(k.Namn);
+        }
+        treeviewKategorier.Model = kategoriListStore;
     }
 }
 

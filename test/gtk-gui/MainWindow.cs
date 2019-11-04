@@ -67,6 +67,8 @@ public partial class MainWindow
 
 	private global::Gtk.Button showKategoriButton;
 
+	private global::Gtk.Button showAllCatagorys;
+
 	private global::Gtk.Button rightChangeButton;
 
 	private global::Gtk.Button rightSaveButton;
@@ -357,16 +359,27 @@ public partial class MainWindow
 		w28.Expand = false;
 		w28.Fill = false;
 		// Container child rightButtonBox.Gtk.Box+BoxChild
+		this.showAllCatagorys = new global::Gtk.Button();
+		this.showAllCatagorys.CanFocus = true;
+		this.showAllCatagorys.Name = "showAllCatagorys";
+		this.showAllCatagorys.UseUnderline = true;
+		this.showAllCatagorys.Label = global::Mono.Unix.Catalog.GetString("Antal kategorier");
+		this.rightButtonBox.Add(this.showAllCatagorys);
+		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.rightButtonBox[this.showAllCatagorys]));
+		w29.Position = 1;
+		w29.Expand = false;
+		w29.Fill = false;
+		// Container child rightButtonBox.Gtk.Box+BoxChild
 		this.rightChangeButton = new global::Gtk.Button();
 		this.rightChangeButton.CanFocus = true;
 		this.rightChangeButton.Name = "rightChangeButton";
 		this.rightChangeButton.UseUnderline = true;
 		this.rightChangeButton.Label = global::Mono.Unix.Catalog.GetString("Ändra");
 		this.rightButtonBox.Add(this.rightChangeButton);
-		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.rightButtonBox[this.rightChangeButton]));
-		w29.Position = 1;
-		w29.Expand = false;
-		w29.Fill = false;
+		global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.rightButtonBox[this.rightChangeButton]));
+		w30.Position = 2;
+		w30.Expand = false;
+		w30.Fill = false;
 		// Container child rightButtonBox.Gtk.Box+BoxChild
 		this.rightSaveButton = new global::Gtk.Button();
 		this.rightSaveButton.CanFocus = true;
@@ -374,9 +387,9 @@ public partial class MainWindow
 		this.rightSaveButton.UseUnderline = true;
 		this.rightSaveButton.Label = global::Mono.Unix.Catalog.GetString("Spara");
 		this.rightButtonBox.Add(this.rightSaveButton);
-		global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.rightButtonBox[this.rightSaveButton]));
-		w30.Position = 2;
-		w30.Fill = false;
+		global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.rightButtonBox[this.rightSaveButton]));
+		w31.Position = 3;
+		w31.Fill = false;
 		// Container child rightButtonBox.Gtk.Box+BoxChild
 		this.rightRemoveButton = new global::Gtk.Button();
 		this.rightRemoveButton.CanFocus = true;
@@ -384,24 +397,24 @@ public partial class MainWindow
 		this.rightRemoveButton.UseUnderline = true;
 		this.rightRemoveButton.Label = global::Mono.Unix.Catalog.GetString("Ta Bort...");
 		this.rightButtonBox.Add(this.rightRemoveButton);
-		global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.rightButtonBox[this.rightRemoveButton]));
-		w31.Position = 3;
-		w31.Fill = false;
-		this.vbox19.Add(this.rightButtonBox);
-		global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vbox19[this.rightButtonBox]));
-		w32.Position = 0;
-		w32.Expand = false;
+		global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.rightButtonBox[this.rightRemoveButton]));
+		w32.Position = 4;
 		w32.Fill = false;
+		this.vbox19.Add(this.rightButtonBox);
+		global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox19[this.rightButtonBox]));
+		w33.Position = 0;
+		w33.Expand = false;
+		w33.Fill = false;
 		// Container child vbox19.Gtk.Box+BoxChild
 		this.label1 = new global::Gtk.Label();
 		this.label1.Name = "label1";
 		this.label1.Xalign = 0F;
 		this.label1.LabelProp = global::Mono.Unix.Catalog.GetString("Podcast #1 - Avsnitt #3");
 		this.vbox19.Add(this.label1);
-		global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vbox19[this.label1]));
-		w33.Position = 1;
-		w33.Expand = false;
-		w33.Fill = false;
+		global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.vbox19[this.label1]));
+		w34.Position = 1;
+		w34.Expand = false;
+		w34.Fill = false;
 		// Container child vbox19.Gtk.Box+BoxChild
 		this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow();
 		this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
@@ -412,22 +425,22 @@ public partial class MainWindow
 		this.textviewAvsnitt.Name = "textviewAvsnitt";
 		this.GtkScrolledWindow1.Add(this.textviewAvsnitt);
 		this.vbox19.Add(this.GtkScrolledWindow1);
-		global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vbox19[this.GtkScrolledWindow1]));
-		w35.Position = 2;
+		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox19[this.GtkScrolledWindow1]));
+		w36.Position = 2;
 		this.vbox13.Add(this.vbox19);
-		global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.vbox19]));
-		w36.Position = 1;
-		this.bigBox.Add(this.vbox13);
-		global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.bigBox[this.vbox13]));
+		global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.vbox13[this.vbox19]));
 		w37.Position = 1;
-		w37.Expand = false;
-		w37.Fill = false;
+		this.bigBox.Add(this.vbox13);
+		global::Gtk.Box.BoxChild w38 = ((global::Gtk.Box.BoxChild)(this.bigBox[this.vbox13]));
+		w38.Position = 1;
+		w38.Expand = false;
+		w38.Fill = false;
 		this.Add(this.bigBox);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 877;
+		this.DefaultWidth = 966;
 		this.DefaultHeight = 427;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
@@ -438,6 +451,7 @@ public partial class MainWindow
 		this.treeviewAvsnitt.RowActivated += new global::Gtk.RowActivatedHandler(this.ShowDiscription);
 		this.treeviewKategorier.RowActivated += new global::Gtk.RowActivatedHandler(this.OnTreeviewKategorierRowActivated);
 		this.showKategoriButton.Clicked += new global::System.EventHandler(this.ShowKategori);
+		this.showAllCatagorys.Clicked += new global::System.EventHandler(this.ShowAllCategorys);
 		this.rightChangeButton.Clicked += new global::System.EventHandler(this.ChangeCategory);
 		this.rightSaveButton.Clicked += new global::System.EventHandler(this.AddKategori);
 		this.rightRemoveButton.Clicked += new global::System.EventHandler(this.RemoveKategori);

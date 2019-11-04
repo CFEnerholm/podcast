@@ -8,7 +8,7 @@
     <widget-library name="../../Validation/bin/Debug/Validation.dll" />
     <widget-library name="../bin/Debug/test.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="877 427">
+  <widget class="Gtk.Window" id="MainWindow" design-size="966 427">
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -375,6 +375,22 @@
                       </packing>
                     </child>
                     <child>
+                      <widget class="Gtk.Button" id="showAllCatagorys">
+                        <property name="MemberName" />
+                        <property name="CanFocus">True</property>
+                        <property name="Type">TextOnly</property>
+                        <property name="Label" translatable="yes">Antal kategorier</property>
+                        <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="ShowAllCategorys" />
+                      </widget>
+                      <packing>
+                        <property name="Position">1</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
                       <widget class="Gtk.Button" id="rightChangeButton">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
@@ -384,7 +400,7 @@
                         <signal name="Clicked" handler="ChangeCategory" />
                       </widget>
                       <packing>
-                        <property name="Position">1</property>
+                        <property name="Position">2</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
@@ -400,7 +416,7 @@
                         <signal name="Clicked" handler="AddKategori" />
                       </widget>
                       <packing>
-                        <property name="Position">2</property>
+                        <property name="Position">3</property>
                         <property name="AutoSize">False</property>
                         <property name="Fill">False</property>
                       </packing>
@@ -415,7 +431,7 @@
                         <signal name="Clicked" handler="RemoveKategori" />
                       </widget>
                       <packing>
-                        <property name="Position">3</property>
+                        <property name="Position">4</property>
                         <property name="AutoSize">False</property>
                         <property name="Fill">False</property>
                       </packing>

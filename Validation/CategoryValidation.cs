@@ -25,9 +25,9 @@ namespace Validation
             md.Destroy();
         }
 
-        public override bool ValidateInput(String Namn)
+        public override bool ValidateInput(string Url)
         {
-            string namn = Namn;
+            string namn = Url;
             Boolean ok = false;
             if (namn.Length>1)
             {

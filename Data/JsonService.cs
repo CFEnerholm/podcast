@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Data
 {
@@ -29,7 +30,29 @@ namespace Data
         }
     }
 
-      
+        public async Task<List<Object>> GetCategoryList(String filename)
+        {
+            var serializerService = new SerializerService();
+            var jsonFilename = filename;
+
+
+            if (File.Exists(jsonFilename))
+            {
+                var list = await serializerService.DeserializeCategory(jsonFilename);
+
+                return list;
+            }
+
+            else
+            {
+                var list = new List<Object>();
+                serializerService.Serialize(jsonFilename, list);
+                return list;
+            }
+        }
+
+
+
 
         public void AddItemToList(Object Item, String filename)
         {

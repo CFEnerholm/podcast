@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Data;
 namespace logic
 {
@@ -36,6 +37,19 @@ namespace logic
                 var kat = new Kategori(k.ToString());
                 KategoriList.Add(kat);
             }
+        }
+
+        public async Task<List<Kategori>> GetAllKategorier()
+        {
+            var list = await KategoriService.GetCategoryList("kategori.json");
+
+            foreach (var k in list)
+            {
+                var kat = new Kategori(k.ToString());
+                KategoriList.Add(kat);
+            }
+
+            return KategoriList;
         }
 
         public void GetPodcasts()

@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Data
 {
-		public class SerializerService
+    public class SerializerService
     {
         public List<object> List;
 
-            public SerializerService()
+        public SerializerService()
         {
-               List = new List<object>();
+            List = new List<object>();
         }
 
 
@@ -29,19 +30,37 @@ namespace Data
 
         public List<object> Deserialize(string filename)
         {
-           var serializer = CreateSerializer();
-           using (var sr = new StreamReader(filename))
-           {
-             using (var jr = new JsonTextReader(sr))
-              {
-               var list = serializer.Deserialize<List<object>>(jr);
+            var serializer = CreateSerializer();
+            using (var sr = new StreamReader(filename))
+            {
+                using (var jr = new JsonTextReader(sr))
+                {
+                    var list = serializer.Deserialize<List<object>>(jr);
                     return list;
-              }
+                }
             }
-               
-         }
 
-       
+        }
+
+        public async Task<List<object>> DeserializeCategory(string filename)
+        {
+            var serializer = CreateSerializer();
+            return await Task.Run<List<object>>(() =>
+            {
+
+                using (var sr = new StreamReader(filename))
+                {
+                    using (var jr = new JsonTextReader(sr))
+                    {
+                        var list = serializer.Deserialize<List<object>>(jr);
+                        return list;
+                    }
+                }
+               });
+
+         
+        }
+        
 
         private JsonSerializer CreateSerializer()
         {
