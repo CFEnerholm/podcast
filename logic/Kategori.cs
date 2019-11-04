@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
-using Data;
+
 
 namespace logic
 {
-    public class Kategori
+    public class Kategori : IName
     {
 
         public String Namn { get; set; }

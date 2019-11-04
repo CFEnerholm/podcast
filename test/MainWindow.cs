@@ -1,18 +1,14 @@
 
 using System;
-using System.Collections.Generic;
 using Gtk;
-using System.Linq;
 using logic;
-using System.ComponentModel;
 using System.Timers;
-
 public partial class MainWindow : Gtk.Window
 {
     ListMaker ListMaker;
     string gtkKategori = "";
     string gtkPodcast = "";
-    private Boolean test;
+    
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -23,7 +19,7 @@ public partial class MainWindow : Gtk.Window
         FillTreeviewKategori();
         FillTreeviewPodcast();
         Timer();
-        test = true;
+        
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -221,7 +217,7 @@ public partial class MainWindow : Gtk.Window
                 foreach (Avsnitt a in avsnittsList)
                 {
                     
-                    avsnittListStore.AppendValues(a.AvsnittsNamn);
+                    avsnittListStore.AppendValues(a.Namn);
                 }
             }
         }
@@ -303,7 +299,7 @@ public partial class MainWindow : Gtk.Window
 
                 foreach (Avsnitt a in avsnittsList)
                 {
-                    if(gtkAvsnitt.Equals(a.AvsnittsNamn))
+                    if(gtkAvsnitt.Equals(a.Namn))
                     {
                         textviewAvsnitt.Buffer.Text = a.Beskrivning;
                     }                  

@@ -2,14 +2,14 @@
 
 namespace logic
 {
-    public class Avsnitt //: Podcast
+    public class Avsnitt : IName
     {
-        public String AvsnittsNamn { get; set; }
+        public String Namn { get; set; }
         public String Beskrivning { get; set; }
 
         public Avsnitt(String namn, String beskrivning )
         {
-            AvsnittsNamn = namn;
+            Namn = namn;
             Beskrivning = beskrivning;
         }
     }

@@ -39,6 +39,7 @@
     <Compile Include="Avsnitt.cs" />
     <Compile Include="Podcast.cs" />
     <Compile Include="ListMaker.cs" />
+    <Compile Include="IName.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

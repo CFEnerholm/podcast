@@ -4,7 +4,7 @@ using System.Linq;
 using Data;
 namespace logic
 {
-    public class Podcast
+    public class Podcast: IName
     {
         public String URL { get; set; }
         public String Namn { get; set; }

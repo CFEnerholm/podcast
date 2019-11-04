@@ -2,7 +2,6 @@
 using System.IO;
 using Newtonsoft.Json;
 
-
 namespace Data
 {
 		public class SerializerService
