@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ServiceModel.Syndication;
 using System.Xml;
+using Validation;
 
 namespace Data
 {
+    
     public class RSSReader
     {
+        PodcastValidation PodcastValidation;
         public SyndicationFeed TheFeed { set; get; }
         public String URL;
 
@@ -14,12 +17,20 @@ namespace Data
         {
             URL = url;         
             GetFeed();
+            PodcastValidation = new PodcastValidation();
         }
 
         public void GetFeed()
         {
-            XmlReader r = XmlReader.Create(URL);
-            TheFeed = SyndicationFeed.Load(r);           
+            try
+            {
+                XmlReader r = XmlReader.Create(URL);
+                TheFeed = SyndicationFeed.Load(r);
+            }
+            catch (Exception)
+            {
+                PodcastValidation.MessageDialog("Kolla internetuppkoppling");
+            }         
         }
 
         public String GetPodCastName()

@@ -22,9 +22,9 @@ namespace Validation
 
 
 
-        public virtual Boolean ValidateInput(string Url)
+        public virtual Boolean ValidateInput(string input)
         {
-            string url = Url;
+            string url = input;
             Boolean ok = false;
             if(url.Length>=14 && url.Contains("/"))
             {
@@ -79,6 +79,8 @@ namespace Validation
 
             return ok;
         }
+
+
     }
 }
 
