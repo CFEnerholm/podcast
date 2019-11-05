@@ -1,6 +1,6 @@
 
 using System;
-using System.Timers;
+using System.Linq;
 using Gtk;
 using logic;
 using Validation;
@@ -239,7 +239,7 @@ public partial class MainWindow : Gtk.Window
     {
         try
         {
-            ListMaker.GetPodcasts();
+            ListMaker.UpdateAvsnitt();
             var podcast = gtkPodcast;
             var podcastList = ListMaker.PodcastList;
 
@@ -417,9 +417,20 @@ public partial class MainWindow : Gtk.Window
             object value = model.GetValue(iter, 1);
             gtkPodcast = value.ToString();
             entryNamn.Text = gtkPodcast;
-
             RemoveColumn(treeviewAvsnitt);
             FillTreeviewAvsnitt();
+
+            var list = ListMaker.PodcastList;
+            string url = "Saknar URL?!?!?!";
+
+            foreach (var p in list)
+            {
+                if (gtkPodcast.Equals(p.Namn))
+                {
+                    url = p.URL;
+                }
+            }
+            entryURL.Text = url;
         }
         catch (Exception a)
         {

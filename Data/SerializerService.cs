@@ -8,10 +8,12 @@ namespace Data
     public class SerializerService
     {
         public List<object> List;
+   
 
         public SerializerService()
         {
             List = new List<object>();
+     
         }
 
 
@@ -35,8 +37,8 @@ namespace Data
             {
                 using (var jr = new JsonTextReader(sr))
                 {
-                    var list = serializer.Deserialize<List<object>>(jr);
-                    return list;
+                  var list = serializer.Deserialize<List<object>>(jr);                
+                  return list;
                 }
             }
 
