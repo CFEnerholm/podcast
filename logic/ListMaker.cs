@@ -37,6 +37,7 @@ namespace logic
                 var kat = new Kategori(k.ToString());
                 KategoriList.Add(kat);
             }
+         
         }
 
         public async Task<List<Kategori>> GetAllKategorier()
@@ -55,6 +56,7 @@ namespace logic
         public void GetPodcasts()
         {
             var list = PodcastService.GetList("podcast.json");
+            var list2 = new List<Object>();
 
             foreach (Podcast p in list)
             {
@@ -65,6 +67,11 @@ namespace logic
                 var pod = new Podcast(url, frekvens, kategori);
                 PodcastList.Add(pod);
             }
+            foreach (Object o in PodcastList)
+            {
+                list2.Add(o);
+            }
+            PodcastService.SaveList(list2, "podcast.json");
         }
 
         public void ChangePodcast(String Podcast, Frekvens Frekvens, Kategori Kategori, String Url)

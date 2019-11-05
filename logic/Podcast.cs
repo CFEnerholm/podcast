@@ -52,6 +52,7 @@ namespace logic
         {
             Timer timer = new Timer();
             timer.Interval = Interval;
+            timer.AutoReset = true;
             timer.Elapsed += TimerOnElapsed;
             timer.Start();
         }
@@ -61,23 +62,14 @@ namespace logic
         {
             RSSReader Reader = new RSSReader(URL);
             var list = Reader.GetAvsnittsInfo();
-            var i = 1;
-            int avsnittsListLenght = AvsnittsLista.Count;
+            AvsnittsLista.Clear();
 
             foreach (var a in list)
             {
-                if (i < avsnittsListLenght)
-                {
-
-                }
-                else
-                {
                     var titel = a.ElementAt(0);
                     var beskrivning = a.ElementAt(1);
                     Avsnitt avsnitt = new Avsnitt(titel, beskrivning);
-                    AvsnittsLista.Add(avsnitt);
-                }
-                i++;
+                    AvsnittsLista.Add(avsnitt);     
             }
         }
     }

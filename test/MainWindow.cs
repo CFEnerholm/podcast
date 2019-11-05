@@ -26,8 +26,6 @@ public partial class MainWindow : Gtk.Window
         FillComboBoxFrekvens();
         FillTreeviewKategori();
         FillTreeviewPodcast();
-        StartTimer();
-
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -79,7 +77,6 @@ public partial class MainWindow : Gtk.Window
             String clear = "";
             entryNamn.Text = clear;
             treeviewAvsnitt.RemoveColumn(treeviewAvsnitt.GetColumn(0));
-
             var lista = ListMaker.PodcastList;
 
             Gtk.TreeViewColumn avsnittColumn = new Gtk.TreeViewColumn();
@@ -242,6 +239,7 @@ public partial class MainWindow : Gtk.Window
     {
         try
         {
+            ListMaker.GetPodcasts();
             var podcast = gtkPodcast;
             var podcastList = ListMaker.PodcastList;
 
@@ -562,29 +560,6 @@ public partial class MainWindow : Gtk.Window
         catch (Exception a)
         {
             Console.WriteLine(a.Message);
-        }
-    }
-
-    public void StartTimer()
-    {
-        Timer timer = new Timer();
-        timer.Interval = 1000;
-        timer.Elapsed += TimerOnElapsed;
-        timer.Start();
-    }
-
-
-    public void TimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
-    {
-        try
-        {
-            var url = entryURL.Text;
-            entryURL.Text = url + "X";
-        }
-
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
         }
     }
 }
