@@ -382,7 +382,7 @@
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">Antal kategorier</property>
                         <property name="UseUnderline">True</property>
-                        <signal name="Clicked" handler="ShowAllCategorys" />
+                        <signal name="Clicked" handler="ShowNumberOfCategorys" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>

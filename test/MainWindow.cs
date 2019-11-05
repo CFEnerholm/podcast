@@ -537,31 +537,26 @@ public partial class MainWindow : Gtk.Window
         }
     }
 
-    protected async void ShowAllCategorys(object sender, EventArgs e)
+
+        protected async void ShowNumberOfCategorys(object sender, EventArgs e)
     {
         try
         {
             var lista = await ListMaker.GetAllKategorier();
 
-            Gtk.TreeViewColumn kategoriColumn = new Gtk.TreeViewColumn();
-            kategoriColumn.Title = "Kategorier:";
-            Gtk.CellRendererText kategoriNameCell = new Gtk.CellRendererText();
-            kategoriColumn.PackStart(kategoriNameCell, true);
-            treeviewKategorier.AppendColumn(kategoriColumn);
-            kategoriColumn.AddAttribute(kategoriNameCell, "text", 0);
-            Gtk.ListStore kategoriListStore = new Gtk.ListStore(typeof(string));
+            var i = lista.Count;
 
-            foreach (var k in lista)
-            {
-                kategoriListStore.AppendValues(k.Namn);
-            }
-            treeviewKategorier.Model = kategoriListStore;
+            string message = "Du har " + i/2 + " kategorier!";
+
+            entryKategori.Text = message;
+
         }
         catch (Exception a)
         {
             Console.WriteLine(a.Message);
+
         }
     }
-}
 
+}
 
